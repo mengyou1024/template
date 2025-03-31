@@ -1,0 +1,92 @@
+{
+    "version": 4,
+    "configurePresets": [
+        {
+            "name": "linux-gcc-base",
+            "hidden": true,
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                {% if enable_test -%}
+                "BUILD_TESTING": "ON",
+                {% endif -%}
+                "VCPKG_TARGET_TRIPLET": "x64-linux"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        },
+        {
+            "name": "gcc-x64-static-dbg",
+            "displayName": "Linux GCC x64 Static Debug",
+            "inherits": "linux-gcc-base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "gcc-x64-static-rel",
+            "displayName": "Linux GCC x64 Release",
+            "inherits": "gcc-x64-static-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "gcc-x64-static-relwithdbginfo",
+            "displayName": "Linux GCC x64 Release With Debug Info",
+            "inherits": "gcc-x64-static-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        },
+        {
+            "name": "gcc-x64-static-minsizerel",
+            "displayName": "Linux GCC x64 Min",
+            "inherits": "gcc-x64-static-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "MinSizeRel"
+            }
+        },
+        {
+            "name": "gcc-x64-dynamic-dbg",
+            "displayName": "Linux GCC x64 Dynamic Debug",
+            "inherits": "linux-gcc-base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic"
+            }
+        },
+        {
+            "name": "gcc-x64-dynamic-rel",
+            "displayName": "Linux GCC x64 Dynamic Release",
+            "inherits": "gcc-x64-dynamic-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "gcc-x64-dynamic-relwithdbginfo",
+            "displayName": "Linux GCC x64 Dynamic Release With Debug Info",
+            "inherits": "gcc-x64-dynamic-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        },
+        {
+            "name": "gcc-x64-dynamic-minsizerel",
+            "displayName": "Linux GCC x64 Dynamic Min",
+            "inherits": "gcc-x64-dynamic-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "MinSizeRel"
+            }
+        }
+    ]
+}

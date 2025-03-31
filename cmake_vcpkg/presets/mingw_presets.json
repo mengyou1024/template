@@ -1,0 +1,91 @@
+{
+    "version": 4,
+    "configurePresets": [
+        {
+            "name": "windows-mingw-base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc.exe",
+                "CMAKE_CXX_COMPILER": "g++.exe",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                {% if enable_test -%}
+                "BUILD_TESTING": "ON",
+                {% endif -%}
+                "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "mingw-x64-dynamic-dbg",
+            "displayName": "MinGW x64 Dynamic Debug",
+            "inherits": "windows-mingw-base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "mingw-x64-dynamic-rel",
+            "displayName": "MinGW x64 Dynamic Release",
+            "inherits": "mingw-x64-dynamic-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "mingw-x64-dynamic-relwithdbginfo",
+            "displayName": "MinGW x64 Dynamic Release With Debug Info",
+            "inherits": "mingw-x64-dynamic-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        },
+        {
+            "name": "mingw-x64-dynamic-minsizerel",
+            "displayName": "MinGW x64 Dynamic Minimal Size Release",
+            "inherits": "mingw-x64-dynamic-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "MinSizeRel"
+            }
+        },
+        {
+            "name": "mingw-x64-static-dbg",
+            "displayName": "MinGW x64 Static Debug",
+            "inherits": "mingw-x64-dynamic-dbg",
+            "cacheVariables": {
+                "VCPKG_TARGET_TRIPLET": "x64-mingw-static"
+            }
+        },
+        {
+            "name": "mingw-x64-static-rel",
+            "displayName": "MinGW x64 Static Release",
+            "inherits": "mingw-x64-static-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "mingw-x64-static-relwithdbginfo",
+            "displayName": "MinGW x64 Static Release With Debug Info",
+            "inherits": "mingw-x64-static-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        },
+        {
+            "name": "mingw-x64-static-minsizerel",
+            "displayName": "MinGW x64 Static Minimal Size Release",
+            "inherits": "mingw-x64-static-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "MinSizeRel"
+            }
+        }
+    ]
+}

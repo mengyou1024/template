@@ -1,0 +1,9 @@
+{
+    "version": 4,
+    "include": [
+        "presets/msvc_presets.json",
+        "presets/mingw_presets.json",
+        "presets/linux_gcc_presets.json",
+        "presets/cross_mingw_presets.json"
+    ]
+}

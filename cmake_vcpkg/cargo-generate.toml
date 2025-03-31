@@ -1,0 +1,37 @@
+[template]
+ignore = ["components/.githolder"]
+
+[hooks]
+init = ["init-script.rhai"]
+pre = ["pre-script.rhai"]
+post = ["post-script.rhai"]
+
+[placeholders]
+project_version = { type = "string", prompt = "项目版本", default = "0.0.0", regex = "^\\d+\\.\\d+(\\.\\d+)?$" }
+advanced = { type = "bool", prompt = "是否配置高级模板选项?", default = false }
+
+[conditional.'advanced'.placeholders]
+enable_clang_format = { type = "bool", prompt = "是否使用clang-format?", default = true }
+enable_clang_tidy = { type = "bool", prompt = "是否使用clang-tidy?", default = true }
+enable_test = { type = "bool", prompt = "是否使用Google Test?", default = true }
+
+[conditional.'!enable_clang_format']
+ignore = [".clang-format"]
+
+[conditional.'!enable_clang_tidy']
+ignore = [".clang-tidy"]
+
+[conditional.'!devcontainer']
+ignore = [".devcontainer/"]
+
+[conditional.'!enable_test']
+ignore = ["test/"]
+
+[conditional.'!github_workflow']
+ignore = [".github/"]
+
+[conditional.'build_lib']
+ignore = ["src/main.cpp", "src/main.hpp", "test/test_main.cpp", "components/"]
+
+[conditional.'build_bin']
+ignore = ["src/add.cpp", "include/add.hpp", "test/test_add.cpp"]
