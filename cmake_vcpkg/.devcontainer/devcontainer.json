@@ -8,6 +8,10 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				{% if enable_rust -%}
+				"rust-lang.rust-analyzer",
+				"fill-labs.dependi",
+				{% endif -%}
 				"ms-vscode.cpptools",
 				"ms-vscode.cmake-tools",
 				"oderwat.indent-rainbow",
