@@ -1,0 +1,11 @@
+[package]
+name = "rust-src"
+version = "{{ project_version }}"
+edition = "2024"
+
+[lib]
+name = "rust_src"
+crate-type = ["staticlib"]
+
+[dependencies]
+cxx = "^1.0"

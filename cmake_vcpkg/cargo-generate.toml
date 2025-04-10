@@ -8,6 +8,7 @@ post = ["post-script.rhai"]
 
 [placeholders]
 project_version = { type = "string", prompt = "项目版本", default = "0.0.0", regex = "^\\d+\\.\\d+(\\.\\d+)?$" }
+enable_rust = { type = "bool", prompt = "是否使用Rust?", default = false }
 advanced = { type = "bool", prompt = "是否配置高级模板选项?", default = false }
 
 [conditional.'advanced'.placeholders]
@@ -35,3 +36,6 @@ ignore = ["src/main.cpp", "src/main.hpp", "test/test_main.cpp", "components/"]
 
 [conditional.'build_bin']
 ignore = ["src/add.cpp", "include/add.hpp", "test/test_add.cpp"]
+
+[conditional.'!enable_rust']
+ignore = ["rust-src"]

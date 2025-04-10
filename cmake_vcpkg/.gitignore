@@ -42,3 +42,10 @@ _deps
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/ninja,cmake,visualstudiocode
+
+# CMake build directories
+build/
+# Rust target directories
+{% if enable_rust -%}
+target/
+{% endif -%}

@@ -12,7 +12,7 @@ Checks:
   - readability-braces-around-statements
   - llvm-else-after-return
   - readability-qualified-auto
-WarningsAsErrors: ".*"
+WarningsAsErrors: "*"
 HeaderFileExtensions:
   - ""
   - h
@@ -25,6 +25,9 @@ ImplementationFileExtensions:
   - cpp
   - cxx
 HeaderFilterRegex: ".*"
+{% if enable_rust -%}
+ExcludeHeaderFilterRegex: "cxxbridge-cpp/.*"
+{% endif -%}
 FormatStyle: file
 CheckOptions:
   cert-dcl16-c.NewSuffixes: "L;LL;UL;ULL"
