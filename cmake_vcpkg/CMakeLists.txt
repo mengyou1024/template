@@ -17,6 +17,7 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${INC_FILES})
 {% endif %}
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PRIVATE ${INC_DIRS})
+
 target_compile_options(
     ${PROJECT_NAME}
     PUBLIC
@@ -25,6 +26,10 @@ target_compile_options(
     "$<$<C_COMPILER_ID:MSVC>:/W4>"
     "$<$<CXX_COMPILER_ID:MSVC>:/W4>"
 )
+
+if(WIN32)
+    target_compile_definitions(${PROJECT_NAME} PUBLIC UNICODE _UNICODE)
+endif(WIN32)
 {% if enable_clang_tidy %}
 add_clang_tidy_pre_build(${PROJECT_NAME})
 {% endif %}
