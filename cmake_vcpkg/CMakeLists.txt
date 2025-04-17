@@ -1,7 +1,16 @@
 cmake_minimum_required(VERSION 3.20)
 
+if(MINGW)
+    #  设置MinGW编译器的字符集
+    add_compile_options("-finput-charset=UTF-8" "-fexec-charset=GBK")
+endif(MINGW)
+
 project({{ project-name }} VERSION {{ project_version }} LANGUAGES C CXX)
 
+if(MINGW)
+    # 设置MinGw静态链接, 防止 libstdc++-6.dll 定位错误导致程序无法运行 
+    add_link_options("-static")
+endif(MINGW)
 
 set(CMAKE_CXX_STANDARD 23)
 
