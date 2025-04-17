@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
-project({{ project-name }} VERSION {{ project_version }} LANGUAGES C CXX )
+project({{ project-name }} VERSION {{ project_version }} LANGUAGES C CXX)
+
 
 set(CMAKE_CXX_STANDARD 23)
 
@@ -18,14 +19,9 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${INC_FILES})
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PRIVATE ${INC_DIRS})
 
-target_compile_options(
-    ${PROJECT_NAME}
-    PUBLIC
-    "$<$<C_COMPILER_ID:MSVC>:/utf-8>"
-    "$<$<CXX_COMPILER_ID:MSVC>:/utf-8>"
-    "$<$<C_COMPILER_ID:MSVC>:/W4>"
-    "$<$<CXX_COMPILER_ID:MSVC>:/W4>"
-)
+if(MSVC)
+    target_compile_options(${PROJECT_NAME} PUBLIC "/source-charset:utf-8" "/W4")
+endif(MSVC)
 
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PUBLIC UNICODE _UNICODE)
