@@ -113,7 +113,7 @@ CheckOptions:
   readability-identifier-naming.PrivateMemberCase: lower_case
   readability-identifier-naming.PrivateMemberIgnoredRegexp: ""
   readability-identifier-naming.PrivateMemberPrefix: "_"
-  readability-identifier-naming.PrivateMemberSuffix: "_"
+  readability-identifier-naming.PrivateMemberSuffix: ""
   readability-identifier-naming.ProtectedMemberCase: lower_case
   readability-identifier-naming.ProtectedMemberIgnoredRegexp: ""
   readability-identifier-naming.ProtectedMemberPrefix: ""
