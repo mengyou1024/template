@@ -30,12 +30,15 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${INC_DIRS})
 
 if(MSVC)
     target_compile_options(${PROJECT_NAME} PUBLIC "/source-charset:utf-8" "/W4")
+    {%- if build_type == "lib" and library_type == "SHARED" %}
+    target_compile_definitions(${PROJECT_NAME} PRIVATE {{ project_name_upper }}_EXPORTS)
+    {%- endif %}
 endif(MSVC)
 
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PUBLIC UNICODE _UNICODE)
 endif(WIN32)
-{% if enable_clang_tidy %}
+{% if enable_clang_tidy and library_type != "SHARED" %}
 add_clang_tidy_pre_build(${PROJECT_NAME})
 {% endif %}
 {%- if build_type == "bin" %}

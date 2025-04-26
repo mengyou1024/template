@@ -15,6 +15,9 @@
                 {% if enable_test -%}
                 "BUILD_TESTING": "ON",
                 {% endif -%}
+                {% if build_type == "lib" and library_type == "SHARED" -%}
+                "CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS": "ON",
+                {% endif -%}
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             },
             "condition": {

@@ -10,12 +10,15 @@
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "gcc.exe",
                 "CMAKE_CXX_COMPILER": "g++.exe",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
                 "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
                 {% if enable_test -%}
                 "BUILD_TESTING": "ON",
                 {% endif -%}
-                "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic"
+                "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
+                {% if build_type == "lib" and library_type == "SHARED" -%}
+                "CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS": "ON",
+                {% endif -%}
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             },
             "condition": {
                 "type": "equals",
