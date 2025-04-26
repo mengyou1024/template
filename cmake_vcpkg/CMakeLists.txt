@@ -27,7 +27,9 @@ add_executable(${PROJECT_NAME} ${SRC_FILES} ${INC_FILES})
 {% endif %}
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PRIVATE ${INC_DIRS})
-
+{% if build_type == "lib" and library_type == "SHARED" -%}
+set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+{% endif %}
 if(MSVC)
     target_compile_options(${PROJECT_NAME} PUBLIC "/source-charset:utf-8" "/W4")
     {%- if build_type == "lib" and library_type == "SHARED" %}
