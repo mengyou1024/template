@@ -1,0 +1,10 @@
+[package]
+name = "{{project-name}}"
+version = "{{project_version}}"
+edition = "2021"
+
+[dependencies]
+cxx = "1.0"
+
+[build-dependencies]
+cxx-build = "1.0"
