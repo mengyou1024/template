@@ -1,5 +1,5 @@
 {
-    "version": 4,
+    "version": 6,
     "configurePresets": [
         {
             "name": "linux-gcc-base",
@@ -40,22 +40,6 @@
             }
         },
         {
-            "name": "gcc-x64-static-relwithdbginfo",
-            "displayName": "Linux GCC x64 Release With Debug Info",
-            "inherits": "gcc-x64-static-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
-            }
-        },
-        {
-            "name": "gcc-x64-static-minsizerel",
-            "displayName": "Linux GCC x64 Min",
-            "inherits": "gcc-x64-static-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel"
-            }
-        },
-        {
             "name": "gcc-x64-dynamic-dbg",
             "displayName": "Linux GCC x64 Dynamic Debug",
             "inherits": "linux-gcc-base",
@@ -71,22 +55,174 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "gcc-x64-static-dbg-build",
+            "displayName": "Build Linux GCC x64 Static Debug",
+            "configurePreset": "gcc-x64-static-dbg",
+            "description": "Build Linux GCC x64 Static Debug configuration"
         },
         {
-            "name": "gcc-x64-dynamic-relwithdbginfo",
-            "displayName": "Linux GCC x64 Dynamic Release With Debug Info",
-            "inherits": "gcc-x64-dynamic-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
-            }
+            "name": "gcc-x64-static-rel-build",
+            "displayName": "Build Linux GCC x64 Static Release",
+            "configurePreset": "gcc-x64-static-rel",
+            "description": "Build Linux GCC x64 Static Release configuration"
         },
         {
-            "name": "gcc-x64-dynamic-minsizerel",
-            "displayName": "Linux GCC x64 Dynamic Min",
-            "inherits": "gcc-x64-dynamic-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel"
-            }
+            "name": "gcc-x64-dynamic-dbg-build",
+            "displayName": "Build Linux GCC x64 Dynamic Debug",
+            "configurePreset": "gcc-x64-dynamic-dbg",
+            "description": "Build Linux GCC x64 Dynamic Debug configuration"
+        },
+        {
+            "name": "gcc-x64-dynamic-rel-build",
+            "displayName": "Build Linux GCC x64 Dynamic Release",
+            "configurePreset": "gcc-x64-dynamic-rel",
+            "description": "Build Linux GCC x64 Dynamic Release configuration"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "gcc-x64-static-dbg-test",
+            "displayName": "Test Linux GCC x64 Static Debug",
+            "configurePreset": "gcc-x64-static-dbg",
+            "description": "Run tests for Linux GCC x64 Static Debug configuration"
+        },
+        {
+            "name": "gcc-x64-static-rel-test",
+            "displayName": "Test Linux GCC x64 Static Release",
+            "configurePreset": "gcc-x64-static-rel",
+            "description": "Run tests for Linux GCC x64 Static Release configuration"
+        },
+        {
+            "name": "gcc-x64-dynamic-dbg-test",
+            "displayName": "Test Linux GCC x64 Dynamic Debug",
+            "configurePreset": "gcc-x64-dynamic-dbg",
+            "description": "Run tests for Linux GCC x64 Dynamic Debug configuration"
+        },
+        {
+            "name": "gcc-x64-dynamic-rel-test",
+            "displayName": "Test Linux GCC x64 Dynamic Release",
+            "configurePreset": "gcc-x64-dynamic-rel",
+            "description": "Run tests for Linux GCC x64 Dynamic Release configuration"
+        }
+    ],
+    "packagePresets": [
+        {
+            "name": "gcc-x64-static-dbg-package",
+            "displayName": "Package Linux GCC x64 Static Debug",
+            "configurePreset": "gcc-x64-static-dbg",
+            "description": "Create package for Linux GCC x64 Static Debug configuration"
+        },
+        {
+            "name": "gcc-x64-static-rel-package",
+            "displayName": "Package Linux GCC x64 Static Release",
+            "configurePreset": "gcc-x64-static-rel",
+            "description": "Create package for Linux GCC x64 Static Release configuration"
+        },
+        {
+            "name": "gcc-x64-dynamic-dbg-package",
+            "displayName": "Package Linux GCC x64 Dynamic Debug",
+            "configurePreset": "gcc-x64-dynamic-dbg",
+            "description": "Create package for Linux GCC x64 Dynamic Debug configuration"
+        },
+        {
+            "name": "gcc-x64-dynamic-rel-package",
+            "displayName": "Package Linux GCC x64 Dynamic Release",
+            "configurePreset": "gcc-x64-dynamic-rel",
+            "description": "Create package for Linux GCC x64 Dynamic Release configuration"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "gcc-x64-static-dbg-workflow",
+            "displayName": "Workflow Linux GCC x64 Static Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "gcc-x64-static-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "gcc-x64-static-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "gcc-x64-static-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "gcc-x64-static-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "gcc-x64-static-rel-workflow",
+            "displayName": "Workflow Linux GCC x64 Static Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "gcc-x64-static-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "gcc-x64-static-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "gcc-x64-static-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "gcc-x64-static-rel-package"
+                }
+            ]
+        },
+        {
+            "name": "gcc-x64-dynamic-dbg-workflow",
+            "displayName": "Workflow Linux GCC x64 Dynamic Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "gcc-x64-dynamic-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "gcc-x64-dynamic-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "gcc-x64-dynamic-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "gcc-x64-dynamic-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "gcc-x64-dynamic-rel-workflow",
+            "displayName": "Workflow Linux GCC x64 Dynamic Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "gcc-x64-dynamic-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "gcc-x64-dynamic-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "gcc-x64-dynamic-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "gcc-x64-dynamic-rel-package"
+                }
+            ]
         }
     ]
 }

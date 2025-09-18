@@ -1,5 +1,5 @@
 {
-    "version": 4,
+    "version": 6,
     "include": [
         "presets/msvc_presets.json",
         "presets/mingw_presets.json",

@@ -25,10 +25,10 @@ else(TARGET unit_tests)
         ${TEST_SRC_FILES}
         ${TEST_INC_FILES}
     )
+    set_target_properties(unit_tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
     target_link_libraries(unit_tests PRIVATE gtest_main)
     include(GoogleTest)
     gtest_discover_tests(unit_tests)
-    set_target_properties(unit_tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 endif(TARGET unit_tests)
 {% if build_type == "lib" -%}
 target_link_libraries(

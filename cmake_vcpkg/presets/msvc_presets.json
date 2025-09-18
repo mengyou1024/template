@@ -1,5 +1,5 @@
 {
-    "version": 4,
+    "version": 6,
     "configurePresets": [
         {
             "name": "windows-msvc-base",
@@ -49,24 +49,6 @@
             }
         },
         {
-            "name": "msvc-x64-md-relwithdbginfo",
-            "displayName": "MSVC x64 MultiThreadDLL Release With Debug Info",
-            "inherits": "msvc-x64-md-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
-        },
-        {
-            "name": "msvc-x64-md-minsizerel",
-            "displayName": "MSVC x64 MultiThreadDLL Minimal Size Release",
-            "inherits": "msvc-x64-md-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
-        },
-        {
             "name": "msvc-x64-mt-dbg",
             "displayName": "MSVC x64 MultiThread Debug",
             "inherits": "msvc-x64-md-dbg",
@@ -81,24 +63,6 @@
             "inherits": "msvc-x64-mt-dbg",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
-            }
-        },
-        {
-            "name": "msvc-x64-mt-relwithdbginfo",
-            "displayName": "MSVC x64 MultiThread Release With Debug Info",
-            "inherits": "msvc-x64-mt-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
-        },
-        {
-            "name": "msvc-x64-mt-minsizerel",
-            "displayName": "MSVC x64 MultiThread Minimal Size Release",
-            "inherits": "msvc-x64-mt-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
             }
         },
@@ -126,24 +90,6 @@
             }
         },
         {
-            "name": "msvc-x86-md-relwithdbginfo",
-            "displayName": "MSVC x86 MultiThreadDLL Release With Debug Info",
-            "inherits": "msvc-x86-md-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
-        },
-        {
-            "name": "msvc-x86-md-minsizerel",
-            "displayName": "MSVC x86 MultiThreadDLL Minimal Size Release",
-            "inherits": "msvc-x86-md-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
-        },
-        {
             "name": "msvc-x86-mt-dbg",
             "displayName": "MSVC x86 MultiThread Debug",
             "inherits": "msvc-x86-md-dbg",
@@ -158,24 +104,6 @@
             "inherits": "msvc-x86-mt-dbg",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
-            }
-        },
-        {
-            "name": "msvc-x86-mt-relwithdbginfo",
-            "displayName": "MSVC x86 MultiThread Release With Debug Info",
-            "inherits": "msvc-x86-mt-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
-        },
-        {
-            "name": "msvc-x86-mt-minsizerel",
-            "displayName": "MSVC x86 MultiThread Minimal Size Release",
-            "inherits": "msvc-x86-mt-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
             }
         },
@@ -198,24 +126,6 @@
             }
         },
         {
-            "name": "msvc-x64-static-md-relwithdbginfo",
-            "displayName": "MSVC x64 Static MultiThreadDLL Release With Debug Info",
-            "inherits": "msvc-x64-static-md-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
-        },
-        {
-            "name": "msvc-x64-static-md-minsizerel",
-            "displayName": "MSVC x64 Static MultiThreadDLL Minimal Size Release",
-            "inherits": "msvc-x64-static-md-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
-        },
-        {
             "name": "msvc-x64-static-mt-dbg",
             "displayName": "MSVC x64 Static MultiThread Debug",
             "inherits": "msvc-x64-md-dbg",
@@ -230,24 +140,6 @@
             "inherits": "msvc-x64-static-mt-dbg",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
-            }
-        },
-        {
-            "name": "msvc-x64-static-mt-relwithdbginfo",
-            "displayName": "MSVC x64 Static MultiThread Release With Debug Info",
-            "inherits": "msvc-x64-static-mt-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
-        },
-        {
-            "name": "msvc-x64-static-mt-minsizerel",
-            "displayName": "MSVC x64 Static MultiThread Minimal Size Release",
-            "inherits": "msvc-x64-static-mt-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
             }
         },
@@ -270,24 +162,6 @@
             }
         },
         {
-            "name": "msvc-x86-static-md-relwithdbginfo",
-            "displayName": "MSVC x86 Static MultiThreadDLL Release With Debug Info",
-            "inherits": "msvc-x86-static-md-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
-        },
-        {
-            "name": "msvc-x86-static-md-minsizerel",
-            "displayName": "MSVC x86 Static MultiThreadDLL Minimal Size Release",
-            "inherits": "msvc-x86-static-md-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
-        },
-        {
             "name": "msvc-x86-static-mt-dbg",
             "displayName": "MSVC x86 Static MultiThread Debug",
             "inherits": "msvc-x86-md-dbg",
@@ -304,24 +178,654 @@
                 "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
             }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "msvc-x64-md-dbg-build",
+            "displayName": "Build MSVC x64 MultiThreadDLL Debug",
+            "configurePreset": "msvc-x64-md-dbg",
+            "description": "Build MSVC x64 MultiThreadDLL Debug configuration"
         },
         {
-            "name": "msvc-x86-static-mt-relwithdbginfo",
-            "displayName": "MSVC x86 Static MultiThread Release With Debug Info",
-            "inherits": "msvc-x86-static-mt-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
-            }
+            "name": "msvc-x64-md-rel-build",
+            "displayName": "Build MSVC x64 MultiThreadDLL Release",
+            "configurePreset": "msvc-x64-md-rel",
+            "description": "Build MSVC x64 MultiThreadDLL Release configuration"
         },
         {
-            "name": "msvc-x86-static-mt-minsizerel",
-            "displayName": "MSVC x86 Static MultiThread Minimal Size Release",
-            "inherits": "msvc-x86-static-mt-dbg",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded"
-            }
+            "name": "msvc-x64-mt-dbg-build",
+            "displayName": "Build MSVC x64 MultiThread Debug",
+            "configurePreset": "msvc-x64-mt-dbg",
+            "description": "Build MSVC x64 MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x64-mt-rel-build",
+            "displayName": "Build MSVC x64 MultiThread Release",
+            "configurePreset": "msvc-x64-mt-rel",
+            "description": "Build MSVC x64 MultiThread Release configuration"
+        },
+        {
+            "name": "msvc-x86-md-dbg-build",
+            "displayName": "Build MSVC x86 MultiThreadDLL Debug",
+            "configurePreset": "msvc-x86-md-dbg",
+            "description": "Build MSVC x86 MultiThreadDLL Debug configuration"
+        },
+        {
+            "name": "msvc-x86-md-rel-build",
+            "displayName": "Build MSVC x86 MultiThreadDLL Release",
+            "configurePreset": "msvc-x86-md-rel",
+            "description": "Build MSVC x86 MultiThreadDLL Release configuration"
+        },
+        {
+            "name": "msvc-x86-mt-dbg-build",
+            "displayName": "Build MSVC x86 MultiThread Debug",
+            "configurePreset": "msvc-x86-mt-dbg",
+            "description": "Build MSVC x86 MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x86-mt-rel-build",
+            "displayName": "Build MSVC x86 MultiThread Release",
+            "configurePreset": "msvc-x86-mt-rel",
+            "description": "Build MSVC x86 MultiThread Release configuration"
+        },
+        {
+            "name": "msvc-x64-static-md-dbg-build",
+            "displayName": "Build MSVC x64 Static MultiThreadDLL Debug",
+            "configurePreset": "msvc-x64-static-md-dbg",
+            "description": "Build MSVC x64 Static MultiThreadDLL Debug configuration"
+        },
+        {
+            "name": "msvc-x64-static-md-rel-build",
+            "displayName": "Build MSVC x64 Static MultiThreadDLL Release",
+            "configurePreset": "msvc-x64-static-md-rel",
+            "description": "Build MSVC x64 Static MultiThreadDLL Release configuration"
+        },
+        {
+            "name": "msvc-x64-static-mt-dbg-build",
+            "displayName": "Build MSVC x64 Static MultiThread Debug",
+            "configurePreset": "msvc-x64-static-mt-dbg",
+            "description": "Build MSVC x64 Static MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x64-static-mt-rel-build",
+            "displayName": "Build MSVC x64 Static MultiThread Release",
+            "configurePreset": "msvc-x64-static-mt-rel",
+            "description": "Build MSVC x64 Static MultiThread Release configuration"
+        },
+        {
+            "name": "msvc-x86-static-md-dbg-build",
+            "displayName": "Build MSVC x86 Static MultiThreadDLL Debug",
+            "configurePreset": "msvc-x86-static-md-dbg",
+            "description": "Build MSVC x86 Static MultiThreadDLL Debug configuration"
+        },
+        {
+            "name": "msvc-x86-static-md-rel-build",
+            "displayName": "Build MSVC x86 Static MultiThreadDLL Release",
+            "configurePreset": "msvc-x86-static-md-rel",
+            "description": "Build MSVC x86 Static MultiThreadDLL Release configuration"
+        },
+        {
+            "name": "msvc-x86-static-mt-dbg-build",
+            "displayName": "Build MSVC x86 Static MultiThread Debug",
+            "configurePreset": "msvc-x86-static-mt-dbg",
+            "description": "Build MSVC x86 Static MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x86-static-mt-rel-build",
+            "displayName": "Build MSVC x86 Static MultiThread Release",
+            "configurePreset": "msvc-x86-static-mt-rel",
+            "description": "Build MSVC x86 Static MultiThread Release configuration"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "msvc-x64-md-dbg-test",
+            "displayName": "Test MSVC x64 MultiThreadDLL Debug",
+            "configurePreset": "msvc-x64-md-dbg",
+            "description": "Run tests for MSVC x64 MultiThreadDLL Debug configuration"
+        },
+        {
+            "name": "msvc-x64-md-rel-test",
+            "displayName": "Test MSVC x64 MultiThreadDLL Release",
+            "configurePreset": "msvc-x64-md-rel",
+            "description": "Run tests for MSVC x64 MultiThreadDLL Release configuration"
+        },
+        {
+            "name": "msvc-x64-mt-dbg-test",
+            "displayName": "Test MSVC x64 MultiThread Debug",
+            "configurePreset": "msvc-x64-mt-dbg",
+            "description": "Run tests for MSVC x64 MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x64-mt-rel-test",
+            "displayName": "Test MSVC x64 MultiThread Release",
+            "configurePreset": "msvc-x64-mt-rel",
+            "description": "Run tests for MSVC x64 MultiThread Release configuration"
+        },
+        {
+            "name": "msvc-x86-md-dbg-test",
+            "displayName": "Test MSVC x86 MultiThreadDLL Debug",
+            "configurePreset": "msvc-x86-md-dbg",
+            "description": "Run tests for MSVC x86 MultiThreadDLL Debug configuration"
+        },
+        {
+            "name": "msvc-x86-md-rel-test",
+            "displayName": "Test MSVC x86 MultiThreadDLL Release",
+            "configurePreset": "msvc-x86-md-rel",
+            "description": "Run tests for MSVC x86 MultiThreadDLL Release configuration"
+        },
+        {
+            "name": "msvc-x86-mt-dbg-test",
+            "displayName": "Test MSVC x86 MultiThread Debug",
+            "configurePreset": "msvc-x86-mt-dbg",
+            "description": "Run tests for MSVC x86 MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x86-mt-rel-test",
+            "displayName": "Test MSVC x86 MultiThread Release",
+            "configurePreset": "msvc-x86-mt-rel",
+            "description": "Run tests for MSVC x86 MultiThread Release configuration"
+        },
+        {
+            "name": "msvc-x64-static-md-dbg-test",
+            "displayName": "Test MSVC x64 Static MultiThreadDLL Debug",
+            "configurePreset": "msvc-x64-static-md-dbg",
+            "description": "Run tests for MSVC x64 Static MultiThreadDLL Debug configuration"
+        },
+        {
+            "name": "msvc-x64-static-md-rel-test",
+            "displayName": "Test MSVC x64 Static MultiThreadDLL Release",
+            "configurePreset": "msvc-x64-static-md-rel",
+            "description": "Run tests for MSVC x64 Static MultiThreadDLL Release configuration"
+        },
+        {
+            "name": "msvc-x64-static-mt-dbg-test",
+            "displayName": "Test MSVC x64 Static MultiThread Debug",
+            "configurePreset": "msvc-x64-static-mt-dbg",
+            "description": "Run tests for MSVC x64 Static MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x64-static-mt-rel-test",
+            "displayName": "Test MSVC x64 Static MultiThread Release",
+            "configurePreset": "msvc-x64-static-mt-rel",
+            "description": "Run tests for MSVC x64 Static MultiThread Release configuration"
+        },
+        {
+            "name": "msvc-x86-static-md-dbg-test",
+            "displayName": "Test MSVC x86 Static MultiThreadDLL Debug",
+            "configurePreset": "msvc-x86-static-md-dbg",
+            "description": "Run tests for MSVC x86 Static MultiThreadDLL Debug configuration"
+        },
+        {
+            "name": "msvc-x86-static-md-rel-test",
+            "displayName": "Test MSVC x86 Static MultiThreadDLL Release",
+            "configurePreset": "msvc-x86-static-md-rel",
+            "description": "Run tests for MSVC x86 Static MultiThreadDLL Release configuration"
+        },
+        {
+            "name": "msvc-x86-static-mt-dbg-test",
+            "displayName": "Test MSVC x86 Static MultiThread Debug",
+            "configurePreset": "msvc-x86-static-mt-dbg",
+            "description": "Run tests for MSVC x86 Static MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x86-static-mt-rel-test",
+            "displayName": "Test MSVC x86 Static MultiThread Release",
+            "configurePreset": "msvc-x86-static-mt-rel",
+            "description": "Run tests for MSVC x86 Static MultiThread Release configuration"
+        }
+    ],
+    "packagePresets": [
+        {
+            "name": "msvc-x64-md-dbg-package",
+            "displayName": "Package MSVC x64 MultiThreadDLL Debug",
+            "configurePreset": "msvc-x64-md-dbg",
+            "description": "Create package for MSVC x64 MultiThreadDLL Debug configuration"
+        },
+        {
+            "name": "msvc-x64-md-rel-package",
+            "displayName": "Package MSVC x64 MultiThreadDLL Release",
+            "configurePreset": "msvc-x64-md-rel",
+            "description": "Create package for MSVC x64 MultiThreadDLL Release configuration"
+        },
+        {
+            "name": "msvc-x64-mt-dbg-package",
+            "displayName": "Package MSVC x64 MultiThread Debug",
+            "configurePreset": "msvc-x64-mt-dbg",
+            "description": "Create package for MSVC x64 MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x64-mt-rel-package",
+            "displayName": "Package MSVC x64 MultiThread Release",
+            "configurePreset": "msvc-x64-mt-rel",
+            "description": "Create package for MSVC x64 MultiThread Release configuration"
+        },
+        {
+            "name": "msvc-x86-md-dbg-package",
+            "displayName": "Package MSVC x86 MultiThreadDLL Debug",
+            "configurePreset": "msvc-x86-md-dbg",
+            "description": "Create package for MSVC x86 MultiThreadDLL Debug configuration"
+        },
+        {
+            "name": "msvc-x86-md-rel-package",
+            "displayName": "Package MSVC x86 MultiThreadDLL Release",
+            "configurePreset": "msvc-x86-md-rel",
+            "description": "Create package for MSVC x86 MultiThreadDLL Release configuration"
+        },
+        {
+            "name": "msvc-x86-mt-dbg-package",
+            "displayName": "Package MSVC x86 MultiThread Debug",
+            "configurePreset": "msvc-x86-mt-dbg",
+            "description": "Create package for MSVC x86 MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x86-mt-rel-package",
+            "displayName": "Package MSVC x86 MultiThread Release",
+            "configurePreset": "msvc-x86-mt-rel",
+            "description": "Create package for MSVC x86 MultiThread Release configuration"
+        },
+        {
+            "name": "msvc-x64-static-md-dbg-package",
+            "displayName": "Package MSVC x64 Static MultiThreadDLL Debug",
+            "configurePreset": "msvc-x64-static-md-dbg",
+            "description": "Create package for MSVC x64 Static MultiThreadDLL Debug configuration"
+        },
+        {
+            "name": "msvc-x64-static-md-rel-package",
+            "displayName": "Package MSVC x64 Static MultiThreadDLL Release",
+            "configurePreset": "msvc-x64-static-md-rel",
+            "description": "Create package for MSVC x64 Static MultiThreadDLL Release configuration"
+        },
+        {
+            "name": "msvc-x64-static-mt-dbg-package",
+            "displayName": "Package MSVC x64 Static MultiThread Debug",
+            "configurePreset": "msvc-x64-static-mt-dbg",
+            "description": "Create package for MSVC x64 Static MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x64-static-mt-rel-package",
+            "displayName": "Package MSVC x64 Static MultiThread Release",
+            "configurePreset": "msvc-x64-static-mt-rel",
+            "description": "Create package for MSVC x64 Static MultiThread Release configuration"
+        },
+        {
+            "name": "msvc-x86-static-md-dbg-package",
+            "displayName": "Package MSVC x86 Static MultiThreadDLL Debug",
+            "configurePreset": "msvc-x86-static-md-dbg",
+            "description": "Create package for MSVC x86 Static MultiThreadDLL Debug configuration"
+        },
+        {
+            "name": "msvc-x86-static-md-rel-package",
+            "displayName": "Package MSVC x86 Static MultiThreadDLL Release",
+            "configurePreset": "msvc-x86-static-md-rel",
+            "description": "Create package for MSVC x86 Static MultiThreadDLL Release configuration"
+        },
+        {
+            "name": "msvc-x86-static-mt-dbg-package",
+            "displayName": "Package MSVC x86 Static MultiThread Debug",
+            "configurePreset": "msvc-x86-static-mt-dbg",
+            "description": "Create package for MSVC x86 Static MultiThread Debug configuration"
+        },
+        {
+            "name": "msvc-x86-static-mt-rel-package",
+            "displayName": "Package MSVC x86 Static MultiThread Release",
+            "configurePreset": "msvc-x86-static-mt-rel",
+            "description": "Create package for MSVC x86 Static MultiThread Release configuration"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "msvc-x64-md-dbg-workflow",
+            "displayName": "Workflow MSVC x64 MultiThreadDLL Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-md-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-md-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-md-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-md-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-md-rel-workflow",
+            "displayName": "Workflow MSVC x64 MultiThreadDLL Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-md-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-md-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-md-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-md-rel-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-mt-dbg-workflow",
+            "displayName": "Workflow MSVC x64 MultiThread Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-mt-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-mt-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-mt-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-mt-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-mt-rel-workflow",
+            "displayName": "Workflow MSVC x64 MultiThread Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-mt-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-mt-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-mt-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-mt-rel-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x86-md-dbg-workflow",
+            "displayName": "Workflow MSVC x86 MultiThreadDLL Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x86-md-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x86-md-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x86-md-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x86-md-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x86-md-rel-workflow",
+            "displayName": "Workflow MSVC x86 MultiThreadDLL Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x86-md-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x86-md-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x86-md-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x86-md-rel-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x86-mt-dbg-workflow",
+            "displayName": "Workflow MSVC x86 MultiThread Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x86-mt-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x86-mt-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x86-mt-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x86-mt-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x86-mt-rel-workflow",
+            "displayName": "Workflow MSVC x86 MultiThread Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x86-mt-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x86-mt-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x86-mt-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x86-mt-rel-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-static-md-dbg-workflow",
+            "displayName": "Workflow MSVC x64 Static MultiThreadDLL Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-static-md-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-static-md-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-static-md-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-static-md-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-static-md-rel-workflow",
+            "displayName": "Workflow MSVC x64 Static MultiThreadDLL Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-static-md-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-static-md-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-static-md-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-static-md-rel-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-static-mt-dbg-workflow",
+            "displayName": "Workflow MSVC x64 Static MultiThread Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-static-mt-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-static-mt-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-static-mt-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-static-mt-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-static-mt-rel-workflow",
+            "displayName": "Workflow MSVC x64 Static MultiThread Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-static-mt-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-static-mt-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-static-mt-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-static-mt-rel-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x86-static-md-dbg-workflow",
+            "displayName": "Workflow MSVC x86 Static MultiThreadDLL Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x86-static-md-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x86-static-md-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x86-static-md-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x86-static-md-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x86-static-md-rel-workflow",
+            "displayName": "Workflow MSVC x86 Static MultiThreadDLL Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x86-static-md-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x86-static-md-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x86-static-md-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x86-static-md-rel-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x86-static-mt-dbg-workflow",
+            "displayName": "Workflow MSVC x86 Static MultiThread Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x86-static-mt-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x86-static-mt-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x86-static-mt-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x86-static-mt-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x86-static-mt-rel-workflow",
+            "displayName": "Workflow MSVC x86 Static MultiThread Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x86-static-mt-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x86-static-mt-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x86-static-mt-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x86-static-mt-rel-package"
+                }
+            ]
         }
     ]
 }

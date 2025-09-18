@@ -1,5 +1,5 @@
 {
-    "version": 4,
+    "version": 6,
     "configurePresets": [
         {
             "name": "mingw-x64-base(cross)",
@@ -40,22 +40,6 @@
             }
         },
         {
-            "name": "mingw-x64-static-relwithdbginfo(cross)",
-            "displayName": "MinGW x64 Static Release With Debug Info",
-            "inherits": "mingw-x64-static-dbg(cross)",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
-            }
-        },
-        {
-            "name": "mingw-x64-static-minsizerel(cross)",
-            "displayName": "MinGW x64 static Minimal Size Release",
-            "inherits": "mingw-x64-static-dbg(cross)",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel"
-            }
-        },
-        {
             "name": "mingw-x64-dynamic-dbg(cross)",
             "displayName": "MinGW x64 Dynamic Debug",
             "inherits": "mingw-x64-base(cross)",
@@ -71,22 +55,133 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "mingw-x64-static-dbg-build(cross)",
+            "displayName": "Build MinGW x64 Static Debug",
+            "configurePreset": "mingw-x64-static-dbg(cross)",
+            "description": "Build MinGW x64 Static Debug configuration"
         },
         {
-            "name": "mingw-x64-dynamic-relwithdbginfo(cross)",
-            "displayName": "MinGW x64 Dynamic Release With Debug Info",
-            "inherits": "mingw-x64-dynamic-dbg(cross)",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
-            }
+            "name": "mingw-x64-static-rel-build(cross)",
+            "displayName": "Build MinGW x64 Static Release",
+            "configurePreset": "mingw-x64-static-rel(cross)",
+            "description": "Build MinGW x64 Static Release configuration"
         },
         {
-            "name": "mingw-x64-dynamic-minsizerel(cross)",
-            "displayName": "MinGW x64 Dynamic Min",
-            "inherits": "mingw-x64-dynamic-dbg(cross)",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "MinSizeRel"
-            }
+            "name": "mingw-x64-dynamic-dbg-build(cross)",
+            "displayName": "Build MinGW x64 Dynamic Debug",
+            "configurePreset": "mingw-x64-dynamic-dbg(cross)",
+            "description": "Build MinGW x64 Dynamic Debug configuration"
+        },
+        {
+            "name": "mingw-x64-dynamic-rel-build(cross)",
+            "displayName": "Build MinGW x64 Dynamic Release",
+            "configurePreset": "mingw-x64-dynamic-rel(cross)",
+            "description": "Build MinGW x64 Dynamic Release configuration"
+        }
+    ],
+    "testPresets": [],
+    "packagePresets": [
+        {
+            "name": "mingw-x64-static-dbg-package(cross)",
+            "displayName": "Package MinGW x64 Static Debug",
+            "configurePreset": "mingw-x64-static-dbg(cross)",
+            "description": "Create package for MinGW x64 Static Debug configuration"
+        },
+        {
+            "name": "mingw-x64-static-rel-package(cross)",
+            "displayName": "Package MinGW x64 Static Release",
+            "configurePreset": "mingw-x64-static-rel(cross)",
+            "description": "Create package for MinGW x64 Static Release configuration"
+        },
+        {
+            "name": "mingw-x64-dynamic-dbg-package(cross)",
+            "displayName": "Package MinGW x64 Dynamic Debug",
+            "configurePreset": "mingw-x64-dynamic-dbg(cross)",
+            "description": "Create package for MinGW x64 Dynamic Debug configuration"
+        },
+        {
+            "name": "mingw-x64-dynamic-rel-package(cross)",
+            "displayName": "Package MinGW x64 Dynamic Release",
+            "configurePreset": "mingw-x64-dynamic-rel(cross)",
+            "description": "Create package for MinGW x64 Dynamic Release configuration"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "mingw-x64-static-dbg-workflow(cross)",
+            "displayName": "Workflow MinGW x64 Static Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "mingw-x64-static-dbg(cross)"
+                },
+                {
+                    "type": "build",
+                    "name": "mingw-x64-static-dbg-build(cross)"
+                },
+                {
+                    "type": "package",
+                    "name": "mingw-x64-static-dbg-package(cross)"
+                }
+            ]
+        },
+        {
+            "name": "mingw-x64-static-rel-workflow(cross)",
+            "displayName": "Workflow MinGW x64 Static Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "mingw-x64-static-rel(cross)"
+                },
+                {
+                    "type": "build",
+                    "name": "mingw-x64-static-rel-build(cross)"
+                },
+                {
+                    "type": "package",
+                    "name": "mingw-x64-static-rel-package(cross)"
+                }
+            ]
+        },
+        {
+            "name": "mingw-x64-dynamic-dbg-workflow(cross)",
+            "displayName": "Workflow MinGW x64 Dynamic Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "mingw-x64-dynamic-dbg(cross)"
+                },
+                {
+                    "type": "build",
+                    "name": "mingw-x64-dynamic-dbg-build(cross)"
+                },
+                {
+                    "type": "package",
+                    "name": "mingw-x64-dynamic-dbg-package(cross)"
+                }
+            ]
+        },
+        {
+            "name": "mingw-x64-dynamic-rel-workflow(cross)",
+            "displayName": "Workflow MinGW x64 Dynamic Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "mingw-x64-dynamic-rel(cross)"
+                },
+                {
+                    "type": "build",
+                    "name": "mingw-x64-dynamic-rel-build(cross)"
+                },
+                {
+                    "type": "package",
+                    "name": "mingw-x64-dynamic-rel-package(cross)"
+                }
+            ]
         }
     ]
 }
