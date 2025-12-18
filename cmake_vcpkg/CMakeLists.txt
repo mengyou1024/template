@@ -93,6 +93,7 @@ FetchContent_MakeAvailable(Corrosion)
 # 导入包或工作空间清单"Cargo.toml"文件
 corrosion_import_crate(MANIFEST_PATH rust-src/Cargo.toml)
 corrosion_add_cxxbridge(cxxbridge-cpp CRATE rust_src FILES lib.rs foo/mod.rs)
+target_include_directories(cxxbridge-cpp PUBLIC "include")
 target_link_libraries(${PROJECT_NAME} PUBLIC rust_src cxxbridge-cpp)
 
 if(MSVC)
