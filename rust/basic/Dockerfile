@@ -5,11 +5,11 @@ WORKDIR /workspace
 
 COPY . .
 
-RUN cargo build --release
+RUN rustup target add x86_64-unknown-linux-musl
+RUN cargo build --release --target x86_64-unknown-linux-musl
 
-FROM debian:trixie-slim AS runtime
-WORKDIR /workspace
+FROM scratch
 
-COPY --from=builder /workspace/target/release/{{project-name}} /usr/local/bin/{{project-name}}
+COPY --from=builder /workspace/target/x86_64-unknown-linux-musl/release/{{project-name}} /{{project-name}}
 
-ENTRYPOINT ["/usr/local/bin/{{project-name}}"]
+ENTRYPOINT ["/{{project-name}}"]
