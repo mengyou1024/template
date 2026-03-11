@@ -1,18 +1,13 @@
-# Template Catalog
+# 模板列表
 
-This repository organizes templates by **language** and **function**.
+## Rust
 
-## Directory layout
+- `rust/basic`
+  - 功能: Rust 基础项目模板(含容器化配置).
+- `rust/ffi/cargo-cxx`
+  - 功能: Rust + C++ FFI 互操作模板(基于 cxx).
 
-- `templates/rust/ffi/cargo-cxx`
-  - Rust-first CXX interop template (Rust + C++ FFI bridge).
-- `templates/rust/docker/basic`
-  - Minimal Rust application template with Docker multi-stage build.
-- `templates/cpp/cmake/vcpkg-rust-ffi`
-  - C++-first CMake + vcpkg project with Rust static library integration.
+## C++
 
-## Classification rules
-
-- First level: primary language (`rust`, `cpp`, ...).
-- Second/third level: functional category (for example `ffi`, `docker`, `cmake`).
-- Final level: concrete template name.
+- `cpp/cmake/vcpkg-rust-ffi`
+  - 功能: CMake + vcpkg 的 C++ 项目模板, 并集成 Rust 静态库.
