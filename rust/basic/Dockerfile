@@ -1,16 +1,15 @@
 # syntax=docker/dockerfile:1
 
-FROM rust:slim AS builder
-WORKDIR /app
+FROM rust:1-trixie AS builder
+WORKDIR /workspace
 
-COPY Cargo.toml Cargo.toml
-COPY src src
+COPY . .
 
 RUN cargo build --release
 
-FROM debian:bookworm-slim AS runtime
-WORKDIR /app
+FROM debian:trixie-slim AS runtime
+WORKDIR /workspace
 
-COPY --from=builder /app/target/release/{{project-name}} /usr/local/bin/{{project-name}}
+COPY --from=builder /workspace/target/release/{{project-name}} /usr/local/bin/{{project-name}}
 
 ENTRYPOINT ["/usr/local/bin/{{project-name}}"]
