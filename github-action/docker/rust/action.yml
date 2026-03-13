@@ -1,0 +1,19 @@
+name: "{{project-name}}"
+description: "{{project_description}}"
+author: "{{author_name}}"
+
+inputs:
+  message:
+    description: "A message to echo"
+    required: true
+  name:
+    description: "Name to greet"
+    required: true
+
+outputs:
+  greeting:
+    description: "The greeting message"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"

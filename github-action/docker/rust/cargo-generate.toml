@@ -1,0 +1,9 @@
+[placeholders]
+# 项目描述
+project_description = { type = "string", prompt = "Project description", default = "A custom GitHub Action written in Rust" }
+
+# 作者姓名
+author_name = { type = "string", prompt = "Author name", default = "<Your Name>" }
+
+# Rust edition
+rust_edition = { type = "string", prompt = "Rust edition", default = "2024", choices = ["2015", "2018", "2021", "2024"] }

@@ -1,0 +1,9 @@
+[package]
+name = "{{project-name}}"
+version = "0.1.0"
+edition = "{{rust_edition}}"
+description = "{{project_description}}"
+authors = ["{{author_name}}"]
+
+[dependencies]
+github-actions = "0.0.4"
