@@ -5,7 +5,9 @@ WORKDIR /workspace
 
 COPY . .
 
+RUN apt-get update && apt-get install -y musl-tools musl-dev && rm -rf /var/lib/apt/lists/*
 RUN rustup target add x86_64-unknown-linux-musl
+
 RUN cargo build --release --target x86_64-unknown-linux-musl
 
 FROM scratch
