@@ -1,6 +1,10 @@
 #include "{{project-name}}/cxx/include/blobstore.hpp"
 
+{% if crate_type == "bin" -%}
 #include "{{project-name}}/src/main.rs.h"
+{%- else -%}
+#include "{{project-name}}/src/lib.rs.h"
+{%- endif %}
 
 #include <algorithm>
 #include <functional>
