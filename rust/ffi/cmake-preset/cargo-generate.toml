@@ -1,0 +1,13 @@
+[placeholders]
+project_version = { type = "string", prompt = "Project version", default = "0.1.0", regex = "^\\d+\\.\\d+(\\.\\d+)?$" }
+cpp_standard = { type = "string", prompt = "C++ standard", default = "20", choices = [
+    "17",
+    "20",
+    "23",
+] }
+
+[conditional.'crate_type == "bin"']
+ignore = ["src/lib.rs"]
+
+[conditional.'crate_type == "lib"']
+ignore = ["src/main.rs"]

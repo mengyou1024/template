@@ -6,6 +6,8 @@
   - 功能: Rust 基础项目模板(含容器化配置).
 - `rust/ffi/cargo-cxx`
   - 功能: Rust + C++ FFI 互操作模板(基于 cxx).
+- `rust/ffi/cmake-preset`
+  - 功能: Rust + C++ FFI 互操作模板(基于 CMake).
 
 ## C++
 

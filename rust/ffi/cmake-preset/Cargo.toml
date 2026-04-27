@@ -1,0 +1,8 @@
+[package]
+name = "{{project-name}}"
+version = "{{project_version}}"
+edition = "2024"
+build = "build.rs"
+
+[build-dependencies]
+cmake-preset = "0.1"

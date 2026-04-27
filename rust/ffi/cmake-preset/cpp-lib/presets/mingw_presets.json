@@ -1,0 +1,225 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "windows-mingw-base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc.exe",
+                "CMAKE_CXX_COMPILER": "g++.exe",
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                "BUILD_TESTING": "ON",
+                "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "mingw-x64-dynamic-dbg",
+            "displayName": "MinGW x64 Dynamic Debug",
+            "inherits": "windows-mingw-base",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "mingw-x64-dynamic-rel",
+            "displayName": "MinGW x64 Dynamic Release",
+            "inherits": "mingw-x64-dynamic-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "mingw-x64-static-dbg",
+            "displayName": "MinGW x64 Static Debug",
+            "inherits": "mingw-x64-dynamic-dbg",
+            "cacheVariables": {
+                "VCPKG_TARGET_TRIPLET": "x64-mingw-static"
+            }
+        },
+        {
+            "name": "mingw-x64-static-rel",
+            "displayName": "MinGW x64 Static Release",
+            "inherits": "mingw-x64-static-dbg",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "mingw-x64-dynamic-dbg-build",
+            "displayName": "Build MinGW x64 Dynamic Debug",
+            "configurePreset": "mingw-x64-dynamic-dbg",
+            "description": "Build MinGW x64 Dynamic Debug configuration"
+        },
+        {
+            "name": "mingw-x64-dynamic-rel-build",
+            "displayName": "Build MinGW x64 Dynamic Release",
+            "configurePreset": "mingw-x64-dynamic-rel",
+            "description": "Build MinGW x64 Dynamic Release configuration"
+        },
+        {
+            "name": "mingw-x64-static-dbg-build",
+            "displayName": "Build MinGW x64 Static Debug",
+            "configurePreset": "mingw-x64-static-dbg",
+            "description": "Build MinGW x64 Static Debug configuration"
+        },
+        {
+            "name": "mingw-x64-static-rel-build",
+            "displayName": "Build MinGW x64 Static Release",
+            "configurePreset": "mingw-x64-static-rel",
+            "description": "Build MinGW x64 Static Release configuration"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "mingw-x64-dynamic-dbg-test",
+            "displayName": "Test MinGW x64 Dynamic Debug",
+            "configurePreset": "mingw-x64-dynamic-dbg",
+            "description": "Run tests for MinGW x64 Dynamic Debug configuration"
+        },
+        {
+            "name": "mingw-x64-dynamic-rel-test",
+            "displayName": "Test MinGW x64 Dynamic Release",
+            "configurePreset": "mingw-x64-dynamic-rel",
+            "description": "Run tests for MinGW x64 Dynamic Release configuration"
+        },
+        {
+            "name": "mingw-x64-static-dbg-test",
+            "displayName": "Test MinGW x64 Static Debug",
+            "configurePreset": "mingw-x64-static-dbg",
+            "description": "Run tests for MinGW x64 Static Debug configuration"
+        },
+        {
+            "name": "mingw-x64-static-rel-test",
+            "displayName": "Test MinGW x64 Static Release",
+            "configurePreset": "mingw-x64-static-rel",
+            "description": "Run tests for MinGW x64 Static Release configuration"
+        }
+    ],
+    "packagePresets": [
+        {
+            "name": "mingw-x64-dynamic-dbg-package",
+            "displayName": "Package MinGW x64 Dynamic Debug",
+            "configurePreset": "mingw-x64-dynamic-dbg",
+            "description": "Create package for MinGW x64 Dynamic Debug configuration"
+        },
+        {
+            "name": "mingw-x64-dynamic-rel-package",
+            "displayName": "Package MinGW x64 Dynamic Release",
+            "configurePreset": "mingw-x64-dynamic-rel",
+            "description": "Create package for MinGW x64 Dynamic Release configuration"
+        },
+        {
+            "name": "mingw-x64-static-dbg-package",
+            "displayName": "Package MinGW x64 Static Debug",
+            "configurePreset": "mingw-x64-static-dbg",
+            "description": "Create package for MinGW x64 Static Debug configuration"
+        },
+        {
+            "name": "mingw-x64-static-rel-package",
+            "displayName": "Package MinGW x64 Static Release",
+            "configurePreset": "mingw-x64-static-rel",
+            "description": "Create package for MinGW x64 Static Release configuration"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "mingw-x64-dynamic-dbg-workflow",
+            "displayName": "Workflow MinGW x64 Dynamic Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "mingw-x64-dynamic-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "mingw-x64-dynamic-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "mingw-x64-dynamic-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "mingw-x64-dynamic-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "mingw-x64-dynamic-rel-workflow",
+            "displayName": "Workflow MinGW x64 Dynamic Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "mingw-x64-dynamic-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "mingw-x64-dynamic-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "mingw-x64-dynamic-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "mingw-x64-dynamic-rel-package"
+                }
+            ]
+        },
+        {
+            "name": "mingw-x64-static-dbg-workflow",
+            "displayName": "Workflow MinGW x64 Static Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "mingw-x64-static-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "mingw-x64-static-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "mingw-x64-static-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "mingw-x64-static-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "mingw-x64-static-rel-workflow",
+            "displayName": "Workflow MinGW x64 Static Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "mingw-x64-static-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "mingw-x64-static-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "mingw-x64-static-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "mingw-x64-static-rel-package"
+                }
+            ]
+        }
+    ]
+}
