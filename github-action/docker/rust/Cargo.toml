@@ -6,4 +6,4 @@ description = "{{project_description}}"
 authors = ["{{author_name}}"]
 
 [dependencies]
-github-actions = "0.0.4"
+github-actions = "0"
