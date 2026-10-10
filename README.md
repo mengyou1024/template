@@ -4,6 +4,8 @@
 
 - `rust/basic`
   - 功能: Rust 基础项目模板(含容器化配置).
+- `rust/cli`
+  - 功能: Rust CLI 应用模板, 基于 clap 库, 含子命令、参数解析与日志系统.
 - `rust/ffi/cargo-cxx`
   - 功能: Rust + C++ FFI 互操作模板(基于 cxx).
 - `rust/ffi/cmake-preset`
