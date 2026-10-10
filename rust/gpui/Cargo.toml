@@ -1,0 +1,22 @@
+[package]
+name = "{{ project-name }}"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+gpui-kit = { version = "0.7", features = ["component", "assets"] }
+tracing = "0.1"
+rust-i18n = "4.2"
+tracing-subscriber = { version = "0.3", features = [
+    "env-filter",
+    "local-time",
+] }
+tracing-appender = "0.2"
+time = { version = "0.3", features = ["macros"] }
+rust-embed = "8.12"
+anyhow = "1.0"
+single-application = { version = "0.1", features = ["tokio"] }
+serde = { version = "1.0", features = ["derive"] }
+tokio = { version = "1.52", features = ["full"] }
+dirs = "7.0"

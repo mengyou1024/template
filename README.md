@@ -8,12 +8,13 @@
   - 功能: Rust + C++ FFI 互操作模板(基于 cxx).
 - `rust/ffi/cmake-preset`
   - 功能: Rust + C++ FFI 互操作模板(基于 CMake).
+- `rust/gpui`
+  - 功能: GPUI 桌面应用模板, 使用 cargo-generate 生成项目并为单实例应用生成唯一 UUID.
 
 ## C++
 
 - `cpp/cmake/vcpkg-rust-ffi`
   - 功能: CMake + vcpkg 的 C++ 项目模板, 并集成 Rust 静态库.
-
 
 ## Github Action
 

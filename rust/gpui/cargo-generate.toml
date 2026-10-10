@@ -1,0 +1,5 @@
+[template]
+exclude = [".github/workflows/test.yml"]
+
+[hooks]
+pre = ["pre-script.rhai"]
