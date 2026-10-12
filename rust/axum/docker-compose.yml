@@ -6,6 +6,9 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: {{project-name}}
+      TZ: Asia/Shanghai
+    # 显式指定服务器时区，覆盖旧数据卷初始化时写入 postgresql.conf 的 UTC 配置
+    command: [ "postgres", "-c", "timezone=Asia/Shanghai", "-c", "log_timezone=Asia/Shanghai" ]
     ports:
       - "5432:5432"
     volumes:
@@ -13,7 +16,7 @@ services:
     networks:
       - app-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -24,9 +27,9 @@ services:
   dev:
     image: rust:1-trixie
     environment:
-      - APP_DATABASE_URL=postgres://postgres:postgres@host.docker.internal:5432/{{project-name}}
-      - RUST_LOG=debug
-      - TZ=Asia/Shanghai
+      APP_DATABASE_URL: postgres://postgres:postgres@host.docker.internal:5432/{{project-name}}
+      RUST_LOG: debug
+      TZ: Asia/Shanghai
     volumes:
       - .:/workspace:cached
       - cargo-registry:/usr/local/cargo/registry
@@ -44,6 +47,7 @@ services:
       target: migration
     environment:
       APP_DATABASE_URL: postgres://postgres:postgres@db:5432/{{project-name}}
+      TZ: Asia/Shanghai
     depends_on:
       db:
         condition: service_healthy
@@ -60,6 +64,7 @@ services:
       APP_SERVER_HOST: 0.0.0.0
       APP_SERVER_PORT: 3000
       RUST_LOG: info
+      TZ: Asia/Shanghai
     ports:
       - "3000:3000"
     depends_on:

@@ -1,6 +1,7 @@
 [workspace]
 resolver = "2"
-members = ["app", "entity", "migration"]
+members = ["{{ project-name }}-app", "entity", "migration"]
+default-members = ["{{ project-name }}-app"]
 
 [workspace.package]
 version = "0.1.0"
@@ -10,7 +11,6 @@ edition = "2024"
 # Web framework
 axum = "0.8"
 tokio = { version = "1.44", features = ["full"] }
-tower = "0.5"
 tower-http = { version = "0.7", features = [
     "cors",
     "trace",
@@ -54,7 +54,6 @@ utoipa = { version = "6", features = ["axum_extras", "uuid", "chrono"] }
 utoipa-swagger-ui = { version = "10", features = ["axum"] }
 uuid = { version = "1.10", features = ["v4", "serde"] }
 chrono = { version = "0.4", features = ["serde"] }
-password-hash = { version = "0.6", features = ["rand_core"] }
 argon2 = "0.6"
 rand = "0.10"
 regex = "1.10"

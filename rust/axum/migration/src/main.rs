@@ -3,7 +3,9 @@
 use migration::Migrator;
 use sea_orm::Database;
 use sea_orm_migration::prelude::*;
+use time::macros::format_description;
 use tracing::info;
+use tracing_subscriber::fmt::time::LocalTime;
 
 #[tokio::main]
 async fn main() {

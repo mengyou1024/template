@@ -21,14 +21,14 @@ ENV CARGO_BUILD_TARGET=x86_64-unknown-linux-musl
 COPY Cargo.toml ./
 COPY entity/Cargo.toml entity/Cargo.toml
 COPY migration/Cargo.toml migration/Cargo.toml
-COPY app/Cargo.toml app/Cargo.toml
+COPY {{ project-name }}-app/Cargo.toml {{ project-name }}-app/Cargo.toml
 
 # Create dummy source files to pre-compile dependencies
-RUN mkdir -p entity/src migration/src app/src && \
+RUN mkdir -p entity/src migration/src {{ project-name }}-app/src && \
     echo "pub fn dummy() {}" > entity/src/lib.rs && \
     echo "fn main() {}" > migration/src/main.rs && \
     echo "pub fn dummy() {}" > migration/src/lib.rs && \
-    echo "fn main() {}" > app/src/main.rs
+    echo "fn main() {}" > {{ project-name }}-app/src/main.rs
 
 # Build dependencies only
 RUN cargo build --release --workspace
@@ -36,10 +36,10 @@ RUN cargo build --release --workspace
 # Now copy actual source code
 COPY entity/src entity/src
 COPY migration/src migration/src
-COPY app/src app/src
+COPY {{ project-name }}-app/src {{ project-name }}-app/src
 
 # Force rebuild of our crates
-RUN touch entity/src/lib.rs migration/src/lib.rs migration/src/main.rs app/src/main.rs && \
+RUN touch entity/src/lib.rs migration/src/lib.rs migration/src/main.rs {{ project-name }}-app/src/main.rs && \
     cargo build --release --workspace
 
 # =========================================
@@ -47,7 +47,8 @@ RUN touch entity/src/lib.rs migration/src/lib.rs migration/src/main.rs app/src/m
 # =========================================
 FROM alpine:3 AS migration
 
-RUN apk add --no-cache ca-certificates
+# tzdata 提供时区文件,使 TZ 环境变量生效(日志时间/本地时间解析依赖)
+RUN apk add --no-cache ca-certificates tzdata
 
 WORKDIR /app
 
@@ -60,12 +61,13 @@ ENTRYPOINT ["migration"]
 # =========================================
 FROM alpine:3 AS runtime
 
-RUN apk add --no-cache ca-certificates
+# tzdata 提供时区文件,使 TZ 环境变量生效(日志时间/本地时间解析依赖)
+RUN apk add --no-cache ca-certificates tzdata
 
 WORKDIR /app
 
-COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/app /usr/local/bin/app
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/{{ project-name }}-app /usr/local/bin/{{ project-name }}-app
 
 EXPOSE 3000
 
-ENTRYPOINT ["app"]
+ENTRYPOINT ["{{ project-name }}-app"]

@@ -7,11 +7,11 @@ An Axum-based web application template with Sea-ORM, validator, and Docker suppo
 - **Web Framework**: [Axum](https://github.com/tokio-rs/axum) v0.7 with ergonomic routing
 - **Database**: [Sea-ORM](https://www.sea-ql.org/SeaORM/) with PostgreSQL (migration + entity crates)
 - **Validation**: [validator](https://github.com/Keats/validator) with derive macros
-- **Workspace**: Multi-crate workspace (`app`, `entity`, `migration`)
+- **Workspace**: Multi-crate workspace (`{{ project-name }}-app`, `entity`, `migration`)
 - **API Docs**: [utoipa](https://github.com/juhaku/utoipa) + Swagger UI at `/swagger-ui`
 - **Configuration**: `figment` + `dotenvy` (TOML file + env vars)
 - **Logging**: `tracing` with JSON output
-- **Password Hashing**: Argon2 via `password-hash`
+- **Password Hashing**: Argon2 (PHC-format hashes)
 - **Docker**: Multi-stage Dockerfile + docker-compose with PostgreSQL
 - **Dev Container**: VS Code Dev Container with PostgreSQL sidecar
 - **CI**: GitHub Actions workflow (test + clippy)
@@ -20,7 +20,7 @@ An Axum-based web application template with Sea-ORM, validator, and Docker suppo
 
 ```
 .
-├── app/              # Axum web application
+├── {{ project-name }}-app/  # Axum web application
 │   └── src/
 │       ├── main.rs
 │       ├── config.rs
@@ -80,7 +80,7 @@ cargo run -p migration
 ### 4. Start the server
 
 ```bash
-cargo run -p app
+cargo run
 ```
 
 The API will be available at `http://localhost:3000`.
