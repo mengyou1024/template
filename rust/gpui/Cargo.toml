@@ -1,10 +1,13 @@
-[package]
-name = "{{ project-name }}"
+[workspace]
+resolver = "2"
+members = ["{{ project-name }}-app"]
+default-members = ["{{ project-name }}-app"]
+
+[workspace.package]
 version = "0.1.0"
 edition = "2024"
 
-[dependencies]
-
+[workspace.dependencies]
 gpui-kit = { version = "0.7", features = ["component", "assets"] }
 tracing = "0.1"
 rust-i18n = "4.2"

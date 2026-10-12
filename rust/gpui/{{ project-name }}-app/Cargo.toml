@@ -1,0 +1,18 @@
+[package]
+name = "{{ project-name }}-app"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+gpui-kit = { workspace = true }
+tracing = { workspace = true }
+rust-i18n = { workspace = true }
+tracing-subscriber = { workspace = true }
+tracing-appender = { workspace = true }
+time = { workspace = true }
+rust-embed = { workspace = true }
+anyhow = { workspace = true }
+single-application = { workspace = true }
+serde = { workspace = true }
+tokio = { workspace = true }
+dirs = { workspace = true }

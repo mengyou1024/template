@@ -13,7 +13,7 @@
 - `rust/ffi/cmake-preset`
   - 功能: Rust + C++ FFI 互操作模板(基于 cmake-preset).
 - `rust/gpui`
-  - 功能: GPUI 桌面应用模板, 使用 cargo-generate 生成项目并为单实例应用生成唯一 UUID.
+  - 功能: GPUI 桌面应用模板, Workspace 结构, 使用 cargo-generate 生成项目并为单实例应用生成唯一 UUID.
 
 ## C++
 

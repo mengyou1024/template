@@ -57,7 +57,7 @@ jobs:
             ${{ runner.os }}-cargo-
 
       - name: Build
-        run: cargo build --all-targets --release
+        run: cargo build --workspace --all-targets --release
 
       - name: Test
-        run: cargo test --all-targets --release
+        run: cargo test --workspace --all-targets --release
