@@ -1,11 +1,23 @@
 use anyhow::Result;
-use clap::{Parser, Subcommand, ValueEnum};
+use clap::{
+    Parser, Subcommand, ValueEnum,
+    builder::{
+        Styles,
+        styling::{AnsiColor, Effects},
+    },
+};
 use time::macros::format_description;
 use tracing_subscriber::{EnvFilter, fmt::time::LocalTime};
 
+const STYLES: Styles = Styles::styled()
+    .header(AnsiColor::Green.on_default().effects(Effects::BOLD))
+    .usage(AnsiColor::Green.on_default().effects(Effects::BOLD))
+    .literal(AnsiColor::Cyan.on_default().effects(Effects::BOLD))
+    .placeholder(AnsiColor::Cyan.on_default());
+
 /// {{project-name}} — A CLI application template built with clap.
 #[derive(Parser, Debug)]
-#[command(name = "{{project-name}}", version, about, long_about = None)]
+#[command(name = "{{project-name}}", version, about, long_about = None, styles = STYLES)]
 struct Cli {
     /// Verbosity level (can be used multiple times: -v, -vv, -vvv)
     #[arg(short, long, action = clap::ArgAction::Count, global = true)]
@@ -107,8 +119,7 @@ fn init_logging(verbose: u8, quiet: bool) {
 
     tracing_subscriber::fmt()
         .with_env_filter(
-            EnvFilter::try_from_default_env()
-                .unwrap_or_else(|_| EnvFilter::new(filter)),
+            EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(filter)),
         )
         .with_writer(std::io::stderr)
         .with_timer(LocalTime::new(format_description!(
