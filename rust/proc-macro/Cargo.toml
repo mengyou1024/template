@@ -1,0 +1,17 @@
+[workspace]
+resolver = "2"
+members = ["{{ project-name }}", "{{ project-name }}-macros"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+
+[workspace.dependencies]
+# Attribute parsing for derive / attribute macros
+darling = "0.24"
+# Proc-macro entry points with spanned, aggregated error output
+manyhow = { version = "0.14", features = ["darling"] }
+# Rust token parsing and quasi-quoting
+syn = { version = "3", features = ["full"] }
+quote = "1"
+proc-macro2 = "1"
