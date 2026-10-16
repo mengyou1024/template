@@ -2,6 +2,8 @@
 
 ## Rust
 
+- `rust/axum`
+  - 功能: Axum Web 应用模板, Workspace 结构, 集成 Sea-ORM + validator + Docker + Dev Container.
 - `rust/basic`
   - 功能: Rust 基础项目模板(含容器化配置).
 - `rust/cli`

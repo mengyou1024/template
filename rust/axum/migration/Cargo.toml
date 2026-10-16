@@ -1,0 +1,17 @@
+[package]
+name = "migration"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+sea-orm-migration = { workspace = true }
+sea-orm = { workspace = true }
+entity = { path = "../entity" }
+tokio = { workspace = true }
+dotenvy = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+[[bin]]
+name = "migration"
+path = "src/main.rs"

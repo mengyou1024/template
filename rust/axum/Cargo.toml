@@ -1,0 +1,61 @@
+[workspace]
+resolver = "2"
+members = ["app", "entity", "migration"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+
+[workspace.dependencies]
+# Web framework
+axum = "0.8"
+tokio = { version = "1.44", features = ["full"] }
+tower = "0.5"
+tower-http = { version = "0.7", features = [
+    "cors",
+    "trace",
+    "compression-gzip",
+] }
+
+# Database
+sea-orm = { version = "2.0", features = [
+    "sqlx-postgres",
+    "runtime-tokio-rustls",
+    "macros",
+] }
+sea-orm-migration = { version = "2.0", features = ["runtime-tokio-rustls"] }
+
+# Validation
+validator = { version = "0.21", features = ["derive"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "2.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = [
+    "env-filter",
+    "local-time",
+    "json",
+] }
+time = { version = "0.3", features = ["macros"] }
+
+# Configuration
+dotenvy = "0.15"
+figment = { version = "0.10", features = ["env", "toml"] }
+
+# Utilities
+utoipa = { version = "6", features = ["axum_extras", "uuid", "chrono"] }
+utoipa-swagger-ui = { version = "10", features = ["axum"] }
+uuid = { version = "1.10", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+password-hash = { version = "0.6", features = ["rand_core"] }
+argon2 = "0.6"
+rand = "0.10"
+regex = "1.10"
+base64ct = { version = "1", features = ["alloc"] }

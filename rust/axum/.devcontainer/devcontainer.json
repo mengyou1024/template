@@ -1,0 +1,44 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+    "name": "{{project-name}}",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "dev",
+    "runServices": ["dev"],
+    "workspaceFolder": "/workspace",
+    "overrideCommand": true,
+    "shutdownAction": "stopCompose",
+
+    // Features to add to the dev container.
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+            "moby": false,
+            "dockerDashComposeVersion": "v2"
+        }
+    },
+
+    // Ports to forward from the container to the local machine.
+    "forwardPorts": [
+        3000   // App server
+    ],
+
+    // Run commands after the container is created (once).
+    "postCreateCommand": "rustup component add clippy rustfmt rust-src && cargo fetch",
+
+    // Configure tool-specific properties.
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer",
+                "fill-labs.dependi",
+                "MS-CEINTL.vscode-language-pack-zh-hans",
+                "zhuangtongfa.material-theme",
+                "tamasfe.even-better-toml",
+                "mhutchie.git-graph",
+                "oderwat.indent-rainbow"
+            ]
+        }
+    }
+}
