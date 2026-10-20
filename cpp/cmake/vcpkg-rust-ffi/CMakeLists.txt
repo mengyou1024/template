@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 if(MINGW)
-    #  设置MinGW编译器的字符集
+    # 设置MinGW编译器的字符集
     add_compile_options("-finput-charset=UTF-8" "-fexec-charset=GBK")
 endif(MINGW)
 
@@ -14,19 +14,12 @@ endif(MINGW)
 
 set(CMAKE_CXX_STANDARD 23)
 
-include(cmake/Utils.cmake)
-{% if build_type == "bin" %}
-add_subdirectory_path("components")
-{% endif %}
-resolve_source_tree("src" SRC_FILES INC_FILES INC_DIRS)
-{% if build_type == "lib" %}
-add_library(${PROJECT_NAME} {{ library_type }} ${SRC_FILES} ${INC_FILES})
-{% endif -%}
-{% if build_type == "bin" %}
-add_executable(${PROJECT_NAME} ${SRC_FILES} ${INC_FILES})
+{% if build_type == "bin" -%}
+add_executable(${PROJECT_NAME} src/main.cpp)
+{% elsif build_type == "lib" -%}
+add_library(${PROJECT_NAME} {{ library_type }} src/add.cpp)
 {% endif %}
 target_include_directories(${PROJECT_NAME} PUBLIC include)
-target_include_directories(${PROJECT_NAME} PRIVATE ${INC_DIRS})
 {% if build_type == "lib" and library_type == "SHARED" -%}
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 {% endif %}
@@ -40,10 +33,7 @@ endif(MSVC)
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PUBLIC UNICODE _UNICODE)
 endif(WIN32)
-{% if enable_clang_tidy and library_type != "SHARED" %}
-add_clang_tidy_pre_build(${PROJECT_NAME})
-{% endif %}
-{%- if build_type == "bin" %}
+{% if build_type == "bin" %}
 install(TARGETS ${PROJECT_NAME})
 install(CODE [[
 
@@ -108,4 +98,4 @@ if(MSVC)
         corrosion_set_env_vars(rust_src "CFLAGS=-MDd" "CXXFLAGS=-MDd")
     endif()
 endif()
-{% endif %}
+{% endif -%}

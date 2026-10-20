@@ -1,6 +1,3 @@
-[template]
-ignore = ["components/.githolder"]
-
 [hooks]
 init = ["init-script.rhai"]
 pre = ["pre-script.rhai"]
@@ -13,14 +10,10 @@ advanced = { type = "bool", prompt = "是否配置高级模板选项?", default 
 
 [conditional.'advanced'.placeholders]
 enable_clang_format = { type = "bool", prompt = "是否使用clang-format?", default = true }
-enable_clang_tidy = { type = "bool", prompt = "是否使用clang-tidy?", default = false }
 enable_test = { type = "bool", prompt = "是否使用Google Test?", default = true }
 
 [conditional.'!enable_clang_format']
 ignore = [".clang-format"]
-
-[conditional.'!enable_clang_tidy']
-ignore = [".clang-tidy"]
 
 [conditional.'!devcontainer']
 ignore = [".devcontainer/"]
@@ -32,7 +25,7 @@ ignore = ["test/"]
 ignore = [".github/"]
 
 [conditional.'build_lib']
-ignore = ["src/main.cpp", "src/main.hpp", "test/test_main.cpp", "components/"]
+ignore = ["src/main.cpp", "src/main.hpp", "test/test_main.cpp"]
 
 [conditional.'build_bin']
 ignore = ["src/add.cpp", "include/add.hpp", "test/test_add.cpp"]
