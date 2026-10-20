@@ -4,7 +4,7 @@ pre = ["pre-script.rhai"]
 post = ["post-script.rhai"]
 
 [placeholders]
-project_version = { type = "string", prompt = "项目版本", default = "0.0.0", regex = "^\\d+\\.\\d+(\\.\\d+)?$" }
+project_version = { type = "string", prompt = "项目版本", default = "0.1.0", regex = "^\\d+\\.\\d+(\\.\\d+)?$" }
 enable_rust = { type = "bool", prompt = "是否使用Rust?", default = false }
 advanced = { type = "bool", prompt = "是否配置高级模板选项?", default = false }
 
