@@ -10,13 +10,14 @@ jobs:
   test_windows:
     strategy:
       matrix:
-        presets:
-          [
-            msvc-x64-md-dbg,
-            msvc-x86-md-dbg,
-            msvc-x64-mt-dbg,
-            msvc-x86-mt-dbg,
-          ]
+        include:
+          # MD运行时+动态库 / MD运行时+静态库 / MT运行时+静态库
+          - preset: msvc-x64-md-dynamic-dbg
+            arch: x64
+          - preset: msvc-x64-md-static-dbg
+            arch: x64
+          - preset: msvc-x64-mt-static-dbg
+            arch: x64
     runs-on: windows-latest
     steps:
       # 拉取仓库
@@ -24,11 +25,11 @@ jobs:
       # 配置MSVC环境
       - uses: ilammy/msvc-dev-cmd@v1
         with:
-          arch: x64
+          arch: ${{ matrix.arch }}
       # 编译运行测试
       - name: Build and Test
         run: |
-          cmake --preset ${{ matrix.presets  }}
-          cmake --build build/${{ matrix.presets  }}
-          cd build/${{ matrix.presets  }}
+          cmake --preset ${{ matrix.preset }}
+          cmake --build build/${{ matrix.preset }}
+          cd build/${{ matrix.preset }}
           ctest -C Debug -VV

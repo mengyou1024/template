@@ -1,0 +1,352 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "windows-msvc-base",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "cl.exe",
+                "CMAKE_CXX_COMPILER": "cl.exe",
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                {% if enable_test -%}
+                "BUILD_TESTING": "ON",
+                {% endif -%}
+                {% if build_type == "lib" and library_type == "SHARED" -%}
+                "CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS": "ON",
+                {% endif -%}
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "msvc-x64-md-dynamic",
+            "hidden": true,
+            "inherits": "windows-msvc-base",
+            "cacheVariables": {
+                "VCPKG_TARGET_TRIPLET": "x64-windows",
+                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
+            }
+        },
+        {
+            "name": "msvc-x64-md-static",
+            "hidden": true,
+            "inherits": "windows-msvc-base",
+            "cacheVariables": {
+                "VCPKG_TARGET_TRIPLET": "x64-windows-static-md",
+                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
+            }
+        },
+        {
+            "name": "msvc-x64-mt-static",
+            "hidden": true,
+            "inherits": "windows-msvc-base",
+            "cacheVariables": {
+                "VCPKG_TARGET_TRIPLET": "x64-windows-static",
+                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+            }
+        },
+        {
+            "name": "msvc-x64-md-dynamic-dbg",
+            "displayName": "MSVC x64 MD Dynamic Debug",
+            "inherits": "msvc-x64-md-dynamic",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "msvc-x64-md-dynamic-rel",
+            "displayName": "MSVC x64 MD Dynamic Release",
+            "inherits": "msvc-x64-md-dynamic",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "msvc-x64-md-static-dbg",
+            "displayName": "MSVC x64 MD Static Debug",
+            "inherits": "msvc-x64-md-static",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "msvc-x64-md-static-rel",
+            "displayName": "MSVC x64 MD Static Release",
+            "inherits": "msvc-x64-md-static",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "msvc-x64-mt-static-dbg",
+            "displayName": "MSVC x64 MT Static Debug",
+            "inherits": "msvc-x64-mt-static",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "msvc-x64-mt-static-rel",
+            "displayName": "MSVC x64 MT Static Release",
+            "inherits": "msvc-x64-mt-static",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "msvc-x64-md-dynamic-dbg-build",
+            "displayName": "Build MSVC MD Dynamic Debug",
+            "configurePreset": "msvc-x64-md-dynamic-dbg",
+            "description": "Build MSVC x64 MD Dynamic Debug configuration"
+        },
+        {
+            "name": "msvc-x64-md-dynamic-rel-build",
+            "displayName": "Build MSVC MD Dynamic Release",
+            "configurePreset": "msvc-x64-md-dynamic-rel",
+            "description": "Build MSVC x64 MD Dynamic Release configuration"
+        },
+        {
+            "name": "msvc-x64-md-static-dbg-build",
+            "displayName": "Build MSVC MD Static Debug",
+            "configurePreset": "msvc-x64-md-static-dbg",
+            "description": "Build MSVC x64 MD Static Debug configuration"
+        },
+        {
+            "name": "msvc-x64-md-static-rel-build",
+            "displayName": "Build MSVC MD Static Release",
+            "configurePreset": "msvc-x64-md-static-rel",
+            "description": "Build MSVC x64 MD Static Release configuration"
+        },
+        {
+            "name": "msvc-x64-mt-static-dbg-build",
+            "displayName": "Build MSVC MT Static Debug",
+            "configurePreset": "msvc-x64-mt-static-dbg",
+            "description": "Build MSVC x64 MT Static Debug configuration"
+        },
+        {
+            "name": "msvc-x64-mt-static-rel-build",
+            "displayName": "Build MSVC MT Static Release",
+            "configurePreset": "msvc-x64-mt-static-rel",
+            "description": "Build MSVC x64 MT Static Release configuration"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "msvc-x64-md-dynamic-dbg-test",
+            "displayName": "Test MSVC MD Dynamic Debug",
+            "configurePreset": "msvc-x64-md-dynamic-dbg",
+            "description": "Run tests for MSVC x64 MD Dynamic Debug configuration"
+        },
+        {
+            "name": "msvc-x64-md-dynamic-rel-test",
+            "displayName": "Test MSVC MD Dynamic Release",
+            "configurePreset": "msvc-x64-md-dynamic-rel",
+            "description": "Run tests for MSVC x64 MD Dynamic Release configuration"
+        },
+        {
+            "name": "msvc-x64-md-static-dbg-test",
+            "displayName": "Test MSVC MD Static Debug",
+            "configurePreset": "msvc-x64-md-static-dbg",
+            "description": "Run tests for MSVC x64 MD Static Debug configuration"
+        },
+        {
+            "name": "msvc-x64-md-static-rel-test",
+            "displayName": "Test MSVC MD Static Release",
+            "configurePreset": "msvc-x64-md-static-rel",
+            "description": "Run tests for MSVC x64 MD Static Release configuration"
+        },
+        {
+            "name": "msvc-x64-mt-static-dbg-test",
+            "displayName": "Test MSVC MT Static Debug",
+            "configurePreset": "msvc-x64-mt-static-dbg",
+            "description": "Run tests for MSVC x64 MT Static Debug configuration"
+        },
+        {
+            "name": "msvc-x64-mt-static-rel-test",
+            "displayName": "Test MSVC MT Static Release",
+            "configurePreset": "msvc-x64-mt-static-rel",
+            "description": "Run tests for MSVC x64 MT Static Release configuration"
+        }
+    ],
+    "packagePresets": [
+        {
+            "name": "msvc-x64-md-dynamic-dbg-package",
+            "displayName": "Package MSVC MD Dynamic Debug",
+            "configurePreset": "msvc-x64-md-dynamic-dbg",
+            "description": "Create package for MSVC x64 MD Dynamic Debug configuration"
+        },
+        {
+            "name": "msvc-x64-md-dynamic-rel-package",
+            "displayName": "Package MSVC MD Dynamic Release",
+            "configurePreset": "msvc-x64-md-dynamic-rel",
+            "description": "Create package for MSVC x64 MD Dynamic Release configuration"
+        },
+        {
+            "name": "msvc-x64-md-static-dbg-package",
+            "displayName": "Package MSVC MD Static Debug",
+            "configurePreset": "msvc-x64-md-static-dbg",
+            "description": "Create package for MSVC x64 MD Static Debug configuration"
+        },
+        {
+            "name": "msvc-x64-md-static-rel-package",
+            "displayName": "Package MSVC MD Static Release",
+            "configurePreset": "msvc-x64-md-static-rel",
+            "description": "Create package for MSVC x64 MD Static Release configuration"
+        },
+        {
+            "name": "msvc-x64-mt-static-dbg-package",
+            "displayName": "Package MSVC MT Static Debug",
+            "configurePreset": "msvc-x64-mt-static-dbg",
+            "description": "Create package for MSVC x64 MT Static Debug configuration"
+        },
+        {
+            "name": "msvc-x64-mt-static-rel-package",
+            "displayName": "Package MSVC MT Static Release",
+            "configurePreset": "msvc-x64-mt-static-rel",
+            "description": "Create package for MSVC x64 MT Static Release configuration"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "msvc-x64-md-dynamic-dbg-workflow",
+            "displayName": "Workflow MSVC MD Dynamic Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-md-dynamic-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-md-dynamic-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-md-dynamic-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-md-dynamic-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-md-dynamic-rel-workflow",
+            "displayName": "Workflow MSVC MD Dynamic Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-md-dynamic-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-md-dynamic-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-md-dynamic-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-md-dynamic-rel-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-md-static-dbg-workflow",
+            "displayName": "Workflow MSVC MD Static Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-md-static-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-md-static-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-md-static-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-md-static-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-md-static-rel-workflow",
+            "displayName": "Workflow MSVC MD Static Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-md-static-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-md-static-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-md-static-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-md-static-rel-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-mt-static-dbg-workflow",
+            "displayName": "Workflow MSVC MT Static Debug",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-mt-static-dbg"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-mt-static-dbg-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-mt-static-dbg-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-mt-static-dbg-package"
+                }
+            ]
+        },
+        {
+            "name": "msvc-x64-mt-static-rel-workflow",
+            "displayName": "Workflow MSVC MT Static Release",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "msvc-x64-mt-static-rel"
+                },
+                {
+                    "type": "build",
+                    "name": "msvc-x64-mt-static-rel-build"
+                },
+                {
+                    "type": "test",
+                    "name": "msvc-x64-mt-static-rel-test"
+                },
+                {
+                    "type": "package",
+                    "name": "msvc-x64-mt-static-rel-package"
+                }
+            ]
+        }
+    ]
+}
