@@ -8,7 +8,7 @@ version = "0.1.0"
 edition = "2024"
 
 [workspace.dependencies]
-gpui-kit = { version = "0.7", features = ["component", "assets"] }
+gpui-kit = { version = "0.8", features = ["component", "assets"] }
 tracing = "0.1"
 rust-i18n = "4.2"
 tracing-subscriber = { version = "0.3", features = [
