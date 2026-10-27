@@ -18,7 +18,7 @@ add_executable(
     ${PROJECT_NAME}_tests
     {% if build_type == "bin" -%}
     test_main.cpp
-    {%- elsif build_type == "lib" %}
+    {%- elsif build_type == "lib" -%}
     test_add.cpp
     {%- endif %}
 )
