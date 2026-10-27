@@ -1,9 +1,13 @@
 #pragma once
 {% if build_type == "lib" and library_type == "SHARED" %}
-#ifdef {{ project_name_upper }}_EXPORTS
-    #define {{ project_name_upper }}_API __declspec(dllexport)
+#if defined(_WIN32)
+    #ifdef {{ project_name_upper }}_EXPORTS
+        #define {{ project_name_upper }}_API __declspec(dllexport)
+    #else
+        #define {{ project_name_upper }}_API __declspec(dllimport)
+    #endif
 #else
-    #define {{ project_name_upper }}_API __declspec(dllimport)
+    #define {{ project_name_upper }}_API
 #endif
 {%- endif %}
 {% if build_type == "lib" and library_type == "SHARED" %}
