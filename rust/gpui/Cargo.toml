@@ -1,6 +1,10 @@
 [workspace]
 resolver = "3"
-members = ["{{ project-name }}-app"]
+members = [
+    "{{ project-name }}-ui",
+    "{{ project-name }}-app",
+    "{{ project-name }}-web",
+]
 default-members = ["{{ project-name }}-app"]
 
 [workspace.package]
@@ -17,9 +21,15 @@ tracing-subscriber = { version = "0.3", features = [
 ] }
 tracing-appender = "0.2"
 time = { version = "0.3", features = ["macros"] }
-rust-embed = "8.12"
+# debug-embed: 让 debug 构建也内嵌资源. 浏览器没有文件系统,
+# 否则 debug 的 wasm 构建会在运行时尝试从磁盘读取图标而失败.
+# include-exclude: `#[include]` 属性所需. wasm 构建下 gpui-kit 不会再启用该 feature,
+# 因此必须由本项目显式声明.
+rust-embed = { version = "8.13", features = ["debug-embed", "include-exclude"] }
 anyhow = "1.0"
 single-application = { version = "0.1", features = ["tokio"] }
 serde = { version = "1.0", features = ["derive"] }
-tokio = { version = "1.52", features = ["full"] }
+tokio = { version = "1.54", features = ["full"] }
 dirs = "7.0"
+wasm-bindgen = "0.2"
+console_error_panic_hook = "0.1"

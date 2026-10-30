@@ -4,15 +4,14 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
+app_ui = { path = "../{{ project-name }}-ui", package = "{{ project-name }}-ui" }
 gpui-kit = { workspace = true }
 tracing = { workspace = true }
 rust-i18n = { workspace = true }
 tracing-subscriber = { workspace = true }
 tracing-appender = { workspace = true }
 time = { workspace = true }
-rust-embed = { workspace = true }
-anyhow = { workspace = true }
-single-application = { workspace = true }
 serde = { workspace = true }
+single-application = { workspace = true }
 tokio = { workspace = true }
 dirs = { workspace = true }

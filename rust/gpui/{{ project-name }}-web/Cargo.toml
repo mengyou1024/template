@@ -1,0 +1,17 @@
+[package]
+name = "{{ project-name }}-web"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[lib]
+name = "app_web"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+app_ui = { path = "../{{ project-name }}-ui", package = "{{ project-name }}-ui" }
+gpui-kit = { workspace = true }
+
+[target.'cfg(target_family = "wasm")'.dependencies]
+console_error_panic_hook = { workspace = true }
+wasm-bindgen = { workspace = true }

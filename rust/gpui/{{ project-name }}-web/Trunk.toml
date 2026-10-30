@@ -1,0 +1,18 @@
+[build]
+# Trunk 的源 HTML 文件, 产物输出到 dist/.
+target = "index.html"
+dist = "dist"
+
+[serve]
+addresses = ["127.0.0.1"]
+port = 3000
+open = false
+
+# Trunk 默认只监听 index.html 所在目录, 这里加上共享 UI crate:
+# 修改视图/资源/翻译后同样会触发重建并自动刷新页面.
+[watch]
+watch = ["../{{ project-name }}-ui"]
+
+[tools]
+# 必须与 Cargo.lock 中的 wasm-bindgen 版本一致, 否则 Trunk 会报版本不匹配.
+wasm_bindgen = "0.2.130"

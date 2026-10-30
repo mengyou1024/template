@@ -5,6 +5,10 @@ rustflags = [
     "-C", "link-arg=ucrt.lib"
 ]
 
+# Web (wasm32): GPUI 的渲染树较大, debug 构建需要大于 wasm-ld 默认 1 MiB 的栈.
+[target.wasm32-unknown-unknown]
+rustflags = ["-C", "link-arg=-zstack-size=8388608"]
+
 [profile.dev.package."*"]
 opt-level = 3
 debug = true

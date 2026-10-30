@@ -1,0 +1,10 @@
+[package]
+name = "{{ project-name }}-ui"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+gpui-kit = { workspace = true }
+rust-i18n = { workspace = true }
+rust-embed = { workspace = true }
+anyhow = { workspace = true }

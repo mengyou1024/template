@@ -1,19 +1,12 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-use std::borrow::Cow;
-
-use gpui_kit::component::radio::RadioGroup;
-use gpui_kit::component::{Icon, Root, TitleBar};
-use gpui_kit::{AssetSource, SharedString, Size, WindowBounds, WindowOptions, div, prelude::*, px};
-use rust_embed::Embed;
+use app_ui::{AppView, Assets};
+use gpui_kit::component::{Root, TitleBar};
+use gpui_kit::{AppContext, Context, Size, WindowBounds, WindowOptions, px};
 use serde::{Deserialize, Serialize};
 use single_application::{PrimaryInstance, SingleApplication};
 use time::macros::format_description;
 use tracing_subscriber::{EnvFilter, fmt::time::LocalTime};
-
-// 初始化 rust-i18n,加载 locales/ 目录下的翻译文件
-// 回退语言为 zh-CN(当请求的 key 在目标语言中不存在时使用)
-rust_i18n::i18n!("locales", fallback = "zh-CN");
 
 /// 初始化日志: debug 模式输出到 stdout, release 模式输出到滚动文件.
 /// 返回的 guard 必须在 main 存活期间保持存活(确保非阻塞写入刷新到文件).
@@ -63,99 +56,6 @@ fn init_logging() {
         .init();
 }
 
-/// An asset source that loads assets from the `./assets` folder.
-#[derive(Embed)]
-#[folder = "./assets"]
-#[include = "icons/**/*.svg"]
-pub struct Assets;
-
-impl AssetSource for Assets {
-    fn load(&self, path: &str) -> anyhow::Result<Option<Cow<'static, [u8]>>> {
-        if path.is_empty() {
-            return Ok(None);
-        }
-
-        match Self::get(path) {
-            Some(file) => Ok(Some(file.data)),
-            None => gpui_kit::assets::Assets.load(path),
-        }
-    }
-
-    fn list(&self, path: &str) -> anyhow::Result<Vec<SharedString>> {
-        let mut assets = Self::iter()
-            .filter_map(|p| p.starts_with(path).then(|| p.into()))
-            .collect::<Vec<_>>();
-        assets.extend(gpui_kit::assets::Assets.list(path)?);
-        Ok(assets)
-    }
-}
-
-#[derive(Clone, Copy, PartialEq, Eq)]
-enum AppLocale {
-    SimplifiedChinese,
-    English,
-}
-
-impl From<usize> for AppLocale {
-    fn from(index: usize) -> Self {
-        match index {
-            0 => Self::SimplifiedChinese,
-            1 => Self::English,
-            _ => Self::SimplifiedChinese,
-        }
-    }
-}
-
-impl AppLocale {
-    fn as_str(self) -> &'static str {
-        match self {
-            Self::SimplifiedChinese => "zh-CN",
-            Self::English => "en",
-        }
-    }
-}
-
-struct AppView {
-    locale: AppLocale,
-}
-
-impl Render for AppView {
-    fn render(
-        &mut self,
-        _window: &mut gpui_kit::Window,
-        cx: &mut Context<Self>,
-    ) -> impl IntoElement {
-        div()
-            .size_full()
-            .flex()
-            .flex_col()
-            .child(TitleBar::new().child(Icon::empty().path("icons/logo.svg")))
-            .child(
-                div()
-                    .size_full()
-                    .flex()
-                    .flex_col()
-                    .items_center()
-                    .justify_center()
-                    .p_4()
-                    .gap_4()
-                    .child(
-                        div().flex().gap_2().child(
-                            RadioGroup::vertical("language-radio")
-                                .children(["简体中文", "English"])
-                                .selected_index(Some(self.locale as usize))
-                                .on_change(cx.listener(|view, idx, _, cx| {
-                                    view.locale = AppLocale::from(*idx);
-                                    rust_i18n::set_locale(view.locale.as_str());
-                                    cx.notify();
-                                })),
-                        ),
-                    )
-                    .child(rust_i18n::t!("hello_world")),
-            )
-    }
-}
-
 #[derive(Debug, Deserialize, Serialize)]
 pub enum AppMessage {
     RequestAttention,
@@ -189,7 +89,7 @@ async fn main() {
     rust_i18n::set_locale("zh-CN");
 
     gpui_kit::platform::application()
-        .with_assets(Assets)
+        .with_assets(Assets::new())
         .run(move |cx| {
             gpui_kit::component::init(cx);
 
@@ -208,13 +108,7 @@ async fn main() {
                         cx.new(|cx| {
                             create_message_receive_task(primary_instance, cx);
 
-                            Root::new(
-                                cx.new(|_| AppView {
-                                    locale: AppLocale::SimplifiedChinese,
-                                }),
-                                window,
-                                cx,
-                            )
+                            Root::new(cx.new(|_| AppView::new()), window, cx)
                         })
                     },
                 )
