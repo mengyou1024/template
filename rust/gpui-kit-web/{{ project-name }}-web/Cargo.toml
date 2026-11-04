@@ -9,8 +9,10 @@ name = "app_web"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-app_ui = { path = "../{{ project-name }}-ui", package = "{{ project-name }}-ui" }
 gpui-kit = { workspace = true }
+rust-i18n = { workspace = true }
+rust-embed = { workspace = true }
+anyhow = { workspace = true }
 
 [target.'cfg(target_family = "wasm")'.dependencies]
 console_error_panic_hook = { workspace = true }

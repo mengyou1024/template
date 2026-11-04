@@ -1,9 +1,6 @@
 [workspace]
 resolver = "3"
-members = [
-    "{{ project-name }}-ui",
-    "{{ project-name }}-web",
-]
+members = ["{{ project-name }}-web"]
 default-members = ["{{ project-name }}-web"]
 
 [workspace.package]

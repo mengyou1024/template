@@ -5,7 +5,6 @@ A GPUI WebAssembly application template using `gpui-kit`.
 ## Features
 
 - **GUI Framework**: [gpui-kit](https://github.com/longbridge/gpui-kit) (GPUI) with component library and asset support
-- **Workspace**: Multi-crate workspace (`{{ project-name }}-ui`, `{{ project-name }}-web`)
 - **WebAssembly**: `gpui-kit` web backend running in the browser via Trunk
 - **i18n**: [rust-i18n](https://github.com/longbridge/rust-i18n) with `zh-CN` / `en` locales
 - **Trunk**: No Node.js, npm or shell scripts required
@@ -17,20 +16,17 @@ A GPUI WebAssembly application template using `gpui-kit`.
 ├── index.html                 # Trunk 入口 HTML (根目录直接 trunk serve)
 ├── Trunk.toml                 # Trunk 配置
 ├── rust-toolchain.toml        # 锁定 nightly + wasm32-unknown-unknown
-├── {{ project-name }}-ui/     # Shared views, i18n and assets
+├── {{ project-name }}-web/    # 单一 crate: 视图 / 资源 / i18n / WASM 入口
 │   ├── src/
 │   │   └── lib.rs
 │   ├── assets/                # Embedded assets (rust-embed)
 │   │   └── icons/
-│   └── locales/               # i18n translation files (rust-i18n)
-├── {{ project-name }}-web/    # WebAssembly entry point
-│   ├── src/
-│   │   └── lib.rs
+│   ├── locales/               # i18n translation files (rust-i18n)
 │   └── fonts/                 # Fonts embedded in the WASM module
 ├── .github/
 │   └── workflows/             # CI/CD pipelines
 ├── cargo-generate.toml
-└── Cargo.toml                 # Workspace root
+└── Cargo.toml                 # Workspace root (单 member)
 ```
 
 ## Quick Start
@@ -60,10 +56,10 @@ trunk build --release      # static bundle in dist/
 - Web support is currently **showcase-level** in GPUI Kit; verify input, accessibility,
   startup cost and deployment for your own product.
 - The web platform has no system font database. `IBMPlexSans-Regular.ttf` is embedded
-  (SIL Open Font License, see `{{ project-name }}-web/fonts/LICENSE.txt`) and serves as
-  both the UI font and the `.SystemUIFont` alias. Other glyphs fall back to the browser's Canvas.
+  (SIL Open Font License, see `fonts/LICENSE.txt`) and serves as both the UI font and
+  the `.SystemUIFont` alias. Other glyphs fall back to the browser's Canvas.
 - GPUI Kit's default icon set is not downloadable on the web. The template embeds the
   icons its components use with `gpui_kit::assets::icon_assets!` (see
-  `{{ project-name }}-ui/src/lib.rs`); add icon names to that list when you introduce
+  `{{ project-name }}-web/src/lib.rs`); add icon names to that list when you introduce
   components that need more, otherwise those icons simply render empty.
 - The web runtime supports a single top-level window; render dialogs inside `Root`.
