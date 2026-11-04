@@ -95,7 +95,6 @@ impl gpui_kit::Render for AppView {
         _window: &mut gpui::Window,
         _cx: &mut gpui::Context<Self>,
     ) -> impl gpui::IntoElement {
-        use gpui_kit::component::TitleBar;
         gpui_kit::div()
             .size_full()
             .flex()
