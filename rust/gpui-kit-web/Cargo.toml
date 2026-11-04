@@ -8,7 +8,7 @@ version = "0.1.0"
 edition = "2024"
 
 [workspace.dependencies]
-gpui-kit = { version = "0.8", features = ["component", "assets"] }
+gpui-kit = { version = "0.9", features = ["component", "assets"] }
 rust-i18n = "4.2"
 # debug-embed: 让 debug 构建也内嵌资源. 浏览器没有文件系统,
 # 否则 debug 的 wasm 构建会在运行时尝试从磁盘读取图标而失败.
