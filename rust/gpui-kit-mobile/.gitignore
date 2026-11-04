@@ -1,0 +1,20 @@
+# Rust
+target/
+Cargo.lock
+
+# Gradle / Android
+android/gradle/.gradle/
+android/gradle/local.properties
+android/gradle/app/build/
+android/gradle/build/
+android/gradle/app/src/main/jniLibs/
+android/gradle/*.iml
+android/gradle/.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

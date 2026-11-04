@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  AndroidManifest.xml — GPUI Kit Mobile.
+
+  使用 NativeActivity 让整个应用生命周期由 native (Rust) 代码驱动.
+  android.app.lib_name 元数据告诉 NativeActivity 要 dlopen 哪个 .so,
+  必须与 Rust cdylib 名一致 (不带 lib 前缀 / .so 后缀), 通过
+  manifestPlaceholders 在 build.gradle.kts 中注入.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- GPU / 硬件加速 -->
+    <uses-feature android:glEsVersion="0x00030000" android:required="true" />
+
+    <!-- 网络 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="false"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="{{ project-name }}"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/GpuiTheme"
+    >
+
+        <activity
+            android:name="android.app.NativeActivity"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|keyboard|navigation|uiMode|density"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="unspecified"
+            android:theme="@style/GpuiSplashTheme"
+            android:windowSoftInputMode="adjustResize"
+        >
+            <!-- .so 名, 通过 manifestPlaceholders 注入 -->
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="${nativeLibraryName}"
+            />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

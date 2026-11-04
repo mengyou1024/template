@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 深色主题表面色, 匹配 Rust 端 0x121318 -->
+    <color name="gpui_surface">#FF121318</color>
+</resources>

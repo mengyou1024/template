@@ -1,0 +1,25 @@
+[template]
+exclude = [
+    ".git",
+    "**/target",
+    "**/.gradle",
+    "**/build",
+    # 二进制文件 — exclude = 原样复制, 不做模板替换 (skip template processing).
+    # cargo-generate 遇到二进制字节会误判为无效占位符, 所以必须 exclude.
+    "android/gradle/gradle/wrapper/gradle-wrapper.jar",
+    "android/gradle/app/src/main/assets/fonts/NotoColorEmoji.ttf",
+    "android/gradle/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+    "android/gradle/app/src/main/res/mipmap-hdpi/ic_launcher_round.png",
+    "android/gradle/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+    "android/gradle/app/src/main/res/mipmap-mdpi/ic_launcher_round.png",
+    "android/gradle/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+    "android/gradle/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png",
+    "android/gradle/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+    "android/gradle/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png",
+    "android/gradle/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+    "android/gradle/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png",
+]
+
+# 无自定义占位符 — Android 包名由 crate 名派生: com.example.<crate_name>.
+# 需要自定义包名时, 直接改 android/gradle/app/build.gradle.kts 中的
+# namespace / applicationId, 以及 android/build.bat / build.sh 中的 am start.

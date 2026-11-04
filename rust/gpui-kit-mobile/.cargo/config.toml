@@ -1,0 +1,4 @@
+[env]
+# Android 构建时用于隐藏字体配置告警.
+# cargo-ndk 在 .cargo/config.toml 中通常会写入 toolchain linker / ar 等配置.
+RUST_FONTCONFIG_DLOPEN = "on"

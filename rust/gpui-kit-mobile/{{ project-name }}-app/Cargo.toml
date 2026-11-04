@@ -1,0 +1,21 @@
+[package]
+name = "{{ project-name }}-app"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[lib]
+name = "{{crate_name}}"
+# Android 需要 cdylib (供 NativeActivity dlopen) + staticlib (供链接器) + rlib.
+crate-type = ["cdylib", "staticlib", "lib"]
+path = "src/lib.rs"
+
+[dependencies]
+gpui-kit = { workspace = true }
+gpui-mobile = { workspace = true }
+gpui = { workspace = true }
+log = { workspace = true }
+
+[target.'cfg(target_os = "android")'.dependencies]
+android_logger = "0.15"
+android-activity = { version = "0.6", features = ["native-activity"] }

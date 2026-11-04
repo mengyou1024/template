@@ -14,6 +14,8 @@
   - 功能: Rust + C++ FFI 互操作模板(基于 cmake-preset).
 - `rust/gpui-kit-desktop`
   - 功能: GPUI 桌面应用模板, 基于 gpui-kit 组件库, Workspace 结构, i18n + 单实例 + 日志系统, 使用 cargo-generate 生成项目并自动为单实例应用生成唯一 UUID.
+- `rust/gpui-kit-mobile`
+  - 功能: GPUI Android 原生应用模板, 基于 gpui-kit + gpui-pre-mobile, NativeActivity + cargo-ndk 交叉编译, Gradle 工程打包 APK, 一键构建脚本 `android/build.bat`.
 - `rust/gpui-kit-web`
   - 功能: GPUI WebAssembly 模板, 基于 gpui-kit Web 后端, Trunk 构建 (无需 Node.js), 单一 crate 包含视图/资源/i18n/字体嵌入, 根目录直接 `trunk serve` 启动开发服务器.
 - `rust/proc-macro`

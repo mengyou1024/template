@@ -1,0 +1,45 @@
+[workspace]
+resolver = "3"
+members = ["{{ project-name }}-app"]
+default-members = ["{{ project-name }}-app"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+
+# gpui-kit git rev 必须与 gpui-pre 版本兼容 (见 gpui-mobile 仓库 example).
+# crates.io 的 gpui-kit 0.8 需要 gpui-pre =0.3.9, 与 gpui-pre-mobile 0.1.0 (=0.3.5)
+# 不兼容, 因此这里使用 gpui-mobile example 中确认过能跑的 git rev.
+[workspace.dependencies.gpui-kit]
+git = "https://github.com/longbridge/gpui-kit"
+rev = "ae6a3fdfef416e7040e773415ac9cbd8c623e5d5"
+default-features = false
+features = ["component"]
+
+[workspace.dependencies.gpui-mobile]
+git = "https://github.com/longbridge/gpui-mobile"
+rev = "7548ebc4b24f00494af9976af8852c7163ded9ce"
+package = "gpui-pre-mobile"
+
+[workspace.dependencies.gpui]
+package = "gpui-pre"
+version = "=0.3.10"
+default-features = false
+
+[workspace.dependencies]
+log = "0.4"
+
+# Android release profile (matches gpui-mobile example).
+[profile.release]
+opt-level = "z"
+lto = "fat"
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[profile.dev]
+opt-level = "z"
+lto = "fat"
+codegen-units = 1
+strip = true
+panic = "abort"
