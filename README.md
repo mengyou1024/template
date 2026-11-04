@@ -12,8 +12,10 @@
   - 功能: Rust + C++ FFI 互操作模板(基于 cxx).
 - `rust/ffi/cmake-preset`
   - 功能: Rust + C++ FFI 互操作模板(基于 cmake-preset).
-- `rust/gpui`
-  - 功能: GPUI 桌面应用模板, Workspace 结构, 使用 cargo-generate 生成项目并为单实例应用生成唯一 UUID.
+- `rust/gpui-kit-desktop`
+  - 功能: GPUI 桌面应用模板, 基于 gpui-kit 组件库, Workspace 结构, i18n + 单实例 + 日志系统, 使用 cargo-generate 生成项目并自动为单实例应用生成唯一 UUID.
+- `rust/gpui-kit-web`
+  - 功能: GPUI WebAssembly 模板, 基于 gpui-kit Web 后端, Trunk 构建 (无需 Node.js), 单一 crate 包含视图/资源/i18n/字体嵌入, 根目录直接 `trunk serve` 启动开发服务器.
 - `rust/proc-macro`
   - 功能: Rust 过程宏模板, Workspace 结构(facade crate + proc-macro crate), 基于 manyhow/darling/syn/quote/proc-macro2, 含 derive、attribute、function-like 三类宏示例、错误聚合输出与集成测试.
 
