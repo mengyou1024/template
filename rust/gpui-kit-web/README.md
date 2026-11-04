@@ -14,6 +14,9 @@ A GPUI WebAssembly application template using `gpui-kit`.
 
 ```
 .
+├── index.html                 # Trunk 入口 HTML (根目录直接 trunk serve)
+├── Trunk.toml                 # Trunk 配置
+├── rust-toolchain.toml        # 锁定 nightly + wasm32-unknown-unknown
 ├── {{ project-name }}-ui/     # Shared views, i18n and assets
 │   ├── src/
 │   │   └── lib.rs
@@ -23,9 +26,7 @@ A GPUI WebAssembly application template using `gpui-kit`.
 ├── {{ project-name }}-web/    # WebAssembly entry point
 │   ├── src/
 │   │   └── lib.rs
-│   ├── fonts/                 # Fonts embedded in the WASM module
-│   ├── index.html             # Trunk source page
-│   └── Trunk.toml             # Trunk build/dev-server config
+│   └── fonts/                 # Fonts embedded in the WASM module
 ├── .github/
 │   └── workflows/             # CI/CD pipelines
 ├── cargo-generate.toml
@@ -39,7 +40,6 @@ A GPUI WebAssembly application template using `gpui-kit`.
 ```bash
 cargo install trunk --locked
 
-cd {{ project-name }}-web
 trunk serve                # dev server with auto-reload, http://127.0.0.1:3000
 trunk build --release      # static bundle in dist/
 ```
@@ -48,20 +48,20 @@ trunk build --release      # static bundle in dist/
 
 ## Notes
 
-- The crate pins the `nightly` toolchain (GPUI's web dependencies use the unstable
-  `stdarch_wasm_atomic_wait`) and the `wasm32-unknown-unknown` target via
-  `rust-toolchain.toml`; rustup installs both on the first build.
+- `rust-toolchain.toml` at workspace root pins `nightly` channel and `wasm32-unknown-unknown`
+  target (GPUI's web dependencies use the unstable `stdarch_wasm_atomic_wait`); rustup
+  installs both on the first build.
 - `[tools] wasm_bindgen` in `Trunk.toml` must match the `wasm-bindgen` version in
   `Cargo.lock`, otherwise Trunk aborts with a version-mismatch error.
-- `index.html` declares `data-trunk rel="rust"` for this crate, and
-  `data-wasm-opt="0"` keeps `wasm-opt` out of the toolchain (change it to `"z"` to shrink
+- `index.html` declares `data-trunk rel="rust"` pointing to `{{ project-name }}-web/Cargo.toml`,
+  and `data-wasm-opt="0"` keeps `wasm-opt` out of the toolchain (change it to `"z"` to shrink
   the release bundle; Trunk then downloads `wasm-opt` automatically).
-- `data-target-name="app_web"` selects the `cdylib` library target of the crate.
+- `data-target-name="app_web"` selects the `cdylib` library target of the web crate.
 - Web support is currently **showcase-level** in GPUI Kit; verify input, accessibility,
   startup cost and deployment for your own product.
 - The web platform has no system font database. `IBMPlexSans-Regular.ttf` is embedded
-  (SIL Open Font License, see `fonts/LICENSE.txt`) and serves as both the UI font and
-  the `.SystemUIFont` alias. Other glyphs fall back to the browser's Canvas.
+  (SIL Open Font License, see `{{ project-name }}-web/fonts/LICENSE.txt`) and serves as
+  both the UI font and the `.SystemUIFont` alias. Other glyphs fall back to the browser's Canvas.
 - GPUI Kit's default icon set is not downloadable on the web. The template embeds the
   icons its components use with `gpui_kit::assets::icon_assets!` (see
   `{{ project-name }}-ui/src/lib.rs`); add icon names to that list when you introduce

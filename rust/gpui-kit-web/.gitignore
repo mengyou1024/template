@@ -15,7 +15,7 @@ Cargo.lock
 **/*.rs.bk
 
 ### Web (WebAssembly) ###
-{{ project-name }}-web/dist/
+dist/
 
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
